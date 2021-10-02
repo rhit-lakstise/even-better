@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import './login.dart';
 import './main.dart';
+import './sign_up.dart';
 
 class FirstTime extends StatelessWidget {
   const FirstTime({Key? key}) : super(key: key);
-
-  void _login() {}
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,20 @@ class FirstTime extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              ElevatedButton(onPressed: _login, child: const Text("Login")),
-              ElevatedButton(onPressed: _login, child: const Text("Sign Up")),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+                  },
+                  child: const Text("Login")),
+              ElevatedButton(
+                  child: const Text("Sign Up"),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUp()));
+                  }),
             ],
           ),
         ),

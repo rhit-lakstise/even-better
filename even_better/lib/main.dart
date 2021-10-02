@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
           //TODO: make a custom color with the rose color palette
           primarySwatch: Colors.red,
         ),
-        home: const SignUp());
+        home: const FirstTime());
   }
 }
