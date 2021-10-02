@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import './main.dart';
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -24,3 +25,4 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+}
