@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import './homepage.dart';
+import './firsttime.dart';
+import './login.dart';
+import 'sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: MyApp.appTitle,
-      theme: ThemeData(
-        //TODO: make a custom color with the rose color palette
-        primarySwatch: Colors.red,
-      ),
-      home: const MyHomePage(title: MyApp.appTitle),
-    );
+        title: MyApp.appTitle,
+        theme: ThemeData(
+          //TODO: make a custom color with the rose color palette
+          primarySwatch: Colors.red,
+        ),
+        home: const SignUp());
   }
 }
