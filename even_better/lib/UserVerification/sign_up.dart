@@ -13,9 +13,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  void _register() {
+  void _registerEB() {
     if (verifyPasswordController.text == passwordController.text) {
       //TODO: add new credentials to firebase
+      var username = usernameController.text;
+      var password = passwordController.text;
       print("registration time!");
     } else {
       //TODO: tell the user the password does not match
@@ -70,7 +72,7 @@ class _SignUpState extends State<SignUp> {
             Container(
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
-                    onPressed: _register, child: const Text("Sign Up"))),
+                    onPressed: _registerEB, child: const Text("Sign Up"))),
           ],
         ),
       ),

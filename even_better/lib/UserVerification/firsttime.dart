@@ -7,7 +7,7 @@ import 'sign_up.dart';
 class FirstTime extends StatelessWidget {
   const FirstTime({Key? key}) : super(key: key);
 
-  void registerRoseCredentials(username, password, context) {
+  void _registerRose(username, password, context) {
     print("rose username ${username}");
     //verify account with RoseFire
 
@@ -20,7 +20,7 @@ class FirstTime extends StatelessWidget {
     }
   }
 
-  void loginEvenBetterCredentials(username, password, context) {
+  void _loginEB(username, password, context) {
     //verify account with our FireBase
     print("Even better username: ${username}");
   }
@@ -45,7 +45,7 @@ class FirstTime extends StatelessWidget {
                             builder: (context) => Login(
                                   label1: "Even Better Username",
                                   label2: "Even Better Password",
-                                  submitFunction: loginEvenBetterCredentials,
+                                  submitFunction: _loginEB,
                                 )));
                   },
                   child: const Text("Login")),
@@ -58,7 +58,7 @@ class FirstTime extends StatelessWidget {
                             builder: (context) => Login(
                                   label1: "Rose-Hulman Username",
                                   label2: "Rose-Hulman Password",
-                                  submitFunction: registerRoseCredentials,
+                                  submitFunction: _registerRose,
                                 )));
                   }),
             ],
