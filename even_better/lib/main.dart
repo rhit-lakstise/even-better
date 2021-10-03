@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './firsttime.dart';
-import './login.dart';
-import 'sign_up.dart';
+import 'UserVerification/firsttime.dart';
 
 void main() {
   runApp(const MyApp());

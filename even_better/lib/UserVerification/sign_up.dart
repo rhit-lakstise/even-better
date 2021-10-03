@@ -1,21 +1,26 @@
 import 'package:flutter/material.dart';
 
-import './main.dart';
+import '../main.dart';
+import 'Helpers/labeled_text_field.dart';
 
-class Login extends StatefulWidget {
-  const Login({
+class SignUp extends StatefulWidget {
+  const SignUp({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
-  void _login() {
-    //TODO: Verify credentials with firebase here
-    print(usernameController.text);
-    print(passwordController.text);
+class _SignUpState extends State<SignUp> {
+  void _register() {
+    if (verifyPasswordController.text == passwordController.text) {
+      //TODO: add new credentials to firebase
+      print("registration time!");
+    } else {
+      //TODO: tell the user the password does not match
+
+    }
   }
 
   @override
@@ -27,6 +32,8 @@ class _LoginState extends State<Login> {
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController verifyPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,40 +49,31 @@ class _LoginState extends State<Login> {
             LabeledTextField(
               label: "Username",
               textEditingController: usernameController,
+              obscureText: false,
             ),
             Container(
               margin: const EdgeInsets.only(top: 35),
               child: LabeledTextField(
+                obscureText: true,
                 label: "Password",
                 textEditingController: passwordController,
               ),
             ),
             Container(
+              margin: EdgeInsets.only(top: 35),
+              child: LabeledTextField(
+                label: "Re-enter Password",
+                obscureText: true,
+                textEditingController: verifyPasswordController,
+              ),
+            ),
+            Container(
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
-                    onPressed: _login, child: const Text("Login"))),
+                    onPressed: _register, child: const Text("Sign Up"))),
           ],
         ),
       ),
-    );
-  }
-}
-
-class LabeledTextField extends StatelessWidget {
-  const LabeledTextField(
-      {Key? key, required this.label, required this.textEditingController})
-      : super(key: key);
-  final TextEditingController textEditingController;
-  final String label;
-  @override
-  Widget build(BuildContext context) {
-    return ListBody(
-      children: [
-        Text(label),
-        TextField(
-          controller: textEditingController,
-        ),
-      ],
     );
   }
 }
