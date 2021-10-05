@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
 
+import 'Helpers/rest_api.dart';
 import '../main.dart';
 import 'Helpers/labeled_text_field.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({
+    required this.roseUsername,
     Key? key,
   }) : super(key: key);
+
+  final roseUsername;
 
   @override
   State<SignUp> createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  void _registerEB() {
-    if (verifyPasswordController.text == passwordController.text) {
-      //TODO: add new credentials to firebase
-      var username = usernameController.text;
-      var password = passwordController.text;
-      print("registration time!");
-    } else {
-      //TODO: tell the user the password does not match
-
-    }
-  }
-
   @override
   void dispose() {
     usernameController.dispose();
@@ -72,7 +64,12 @@ class _SignUpState extends State<SignUp> {
             Container(
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
-                    onPressed: _registerEB, child: const Text("Sign Up"))),
+                    onPressed: () {
+                      print(widget.roseUsername);
+                      registerEB(usernameController.text,
+                          passwordController.text, widget.roseUsername);
+                    },
+                    child: const Text("Sign Up"))),
           ],
         ),
       ),
