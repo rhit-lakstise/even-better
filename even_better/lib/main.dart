@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: MyApp.appTitle,
         theme: ThemeData(
-          //TODO: make a custom color with the rose color palette
+          //TODO: make a custom color swatch with the rose color palette
           primarySwatch: Colors.red,
         ),
         home: const FirstTime());

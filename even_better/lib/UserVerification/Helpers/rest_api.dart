@@ -11,14 +11,13 @@ void registerEB(username, password, roseUsername) {
     _createAlbumRegisterEB(username, password, roseUsername);
   } else {
     //TODO: tell the user the password does not match
-
   }
 }
 
 Future<http.Response> _createAlbumRegisterEB(username, password, roseUsername) {
   return http.post(
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:5000/users/signup'),
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -39,7 +38,7 @@ void loginEB(username, password) {
 Future<http.Response> _createAlbumLoginEB(username, password) {
   return http.post(
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:5000/users/signup'),
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
