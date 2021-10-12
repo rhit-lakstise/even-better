@@ -44,15 +44,18 @@ class _LoginState extends State<Login> {
             LabeledTextField(
               label: widget.label1,
               textEditingController: usernameController,
-              obscureText: false,
+              isPassword: false,
+              isSignUpPassword: false,
+              onSubmit: (String val) {},
             ),
             Container(
               margin: const EdgeInsets.only(top: 35),
               child: LabeledTextField(
-                label: widget.label2,
-                textEditingController: passwordController,
-                obscureText: true,
-              ),
+                  label: widget.label2,
+                  textEditingController: passwordController,
+                  isPassword: true,
+                  isSignUpPassword: false,
+                  onSubmit: (String val) {}),
             ),
             Container(
                 margin: const EdgeInsets.only(top: 40),
