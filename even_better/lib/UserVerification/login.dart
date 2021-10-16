@@ -20,13 +20,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  @override
-  void dispose() {
-    usernameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -44,15 +37,18 @@ class _LoginState extends State<Login> {
             LabeledTextField(
               label: widget.label1,
               textEditingController: usernameController,
-              obscureText: false,
+              isPassword: false,
+              isSignUpPassword: false,
+              onSubmit: (String val) {},
             ),
             Container(
               margin: const EdgeInsets.only(top: 35),
               child: LabeledTextField(
-                label: widget.label2,
-                textEditingController: passwordController,
-                obscureText: true,
-              ),
+                  label: widget.label2,
+                  textEditingController: passwordController,
+                  isPassword: true,
+                  isSignUpPassword: false,
+                  onSubmit: (String val) {}),
             ),
             Container(
                 margin: const EdgeInsets.only(top: 40),

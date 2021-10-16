@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'login.dart';
 import '../main.dart';
 import 'sign_up.dart';
+import 'Helpers/rest_api.dart';
 
 class FirstTime extends StatelessWidget {
   const FirstTime({Key? key}) : super(key: key);
@@ -16,12 +19,17 @@ class FirstTime extends StatelessWidget {
 
     if (credentialsValid) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const SignUp()));
+          context,
+          MaterialPageRoute(
+              builder: (context) => SignUp(
+                    roseUsername: username,
+                  )));
     }
   }
 
-  void _loginEB(username, password, context) {
+  void _requestLoginEB(username, password, context) {
     //verify account with our FireBase
+    loginEB(username, password);
     print("Even better username: ${username}");
   }
 
@@ -45,7 +53,7 @@ class FirstTime extends StatelessWidget {
                             builder: (context) => Login(
                                   label1: "Even Better Username",
                                   label2: "Even Better Password",
-                                  submitFunction: _loginEB,
+                                  submitFunction: _requestLoginEB,
                                 )));
                   },
                   child: const Text("Login")),
