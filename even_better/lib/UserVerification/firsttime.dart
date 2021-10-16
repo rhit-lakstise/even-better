@@ -56,10 +56,22 @@ class FirstTime extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => Login(
-                                  label1: "Rose-Hulman Username",
-                                  label2: "Rose-Hulman Password",
-                                  submitFunction: _registerRose,
-                                )));
+                              label1: "Rose-Hulman Username",
+                              label2: "Rose-Hulman Password",
+                              submitFunction: _registerRose,
+                            )));
+                  }),
+              ElevatedButton(
+                  child: const Text("Invite Friends"),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Login(
+                              label1: "Rose-Hulman Username",
+                              label2: "Rose-Hulman Password",
+                              submitFunction: _registerRose,
+                            )));
                   }),
             ],
           ),
