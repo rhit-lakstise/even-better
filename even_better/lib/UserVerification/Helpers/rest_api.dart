@@ -30,13 +30,23 @@ class Album {
 }
 
 void registerEB(username, password, roseUsername) {
-  if (password == password) {
-    //TODO: add new credentials to firebase
+  //check if username is unique -- could do this in the node call potentially
+  //or maybe firebase will send back that it was a repeat username
+
+  if (isUsernameUnique(username)) {
+    //TODO: add new credentials to firebase with node call
     print("registration time!");
     _createAlbumRegisterEB(username, password, roseUsername);
   } else {
     //TODO: tell the user the password does not match
   }
+}
+
+bool isUsernameUnique(username) {
+  //run a stored procedure on the server to see if this is unique!
+  //might be better fix on node side of things
+
+  return true;
 }
 
 Future<Album> _createAlbumRegisterEB(username, password, roseUsername) async {
@@ -63,6 +73,7 @@ Future<Album> _createAlbumRegisterEB(username, password, roseUsername) async {
 
 void loginEB(username, password) {
   //verify account with our FireBase
+  //if can be updated on node server, then this can stay the same
   _createAlbumLoginEB(username, password);
   print("Even better username: ${username}");
 }
