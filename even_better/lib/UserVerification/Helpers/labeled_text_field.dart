@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:passwordfield/passwordfield.dart';
 
 String listRequirements(password) {
-  String errorMessage = "Must contain: \n";
+  String errorMessage = "";
 
   bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
   bool hasDigits = password.contains(RegExp(r'[0-9]'));
@@ -25,6 +25,10 @@ String listRequirements(password) {
   }
   if (!hasSpecialCharacters) {
     errorMessage += "- A special character\n";
+  }
+  //if any of the tests failed, add the prefix to the list
+  if (errorMessage != "") {
+    errorMessage = "Must contain: \n" + errorMessage;
   }
   return errorMessage;
 }
