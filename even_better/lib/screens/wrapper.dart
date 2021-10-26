@@ -5,18 +5,27 @@ import 'home/home.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
 
-class Wrapper extends StatelessWidget {
-  // dynamically changes what the user sees based on the user login state
+class Wrapper extends StatefulWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  State<Wrapper> createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     // when user logs in, a user object will be stored in this variable, set to null if logged out.
     final user = Provider.of<MyUser?>(context);
+
     print("${user}  [Wrapper]");
     // return either home or authenticate widget
     // return const FirstTime();
     if (user == null) {
-      return Authenticate();
+      print('first time page [Wrapper]');
+      return FirstTime();
     } else {
+      print('home page [Wrapper]');
       return Home();
     }
   }

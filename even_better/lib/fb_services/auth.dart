@@ -29,17 +29,17 @@ class AuthService {
   }
 
   // anonymous sign in
-  Future signInAnonymous() async {
-    try {
-      UserCredential cred =
-          await _auth.signInAnonymously(); // return an auth result obj
-      User? user = cred.user;
-      return _userFromFirebase(user);
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
+  // Future signInAnonymous() async {
+  //   try {
+  //     UserCredential cred =
+  //         await _auth.signInAnonymously(); // return an auth result obj
+  //     User? user = cred.user;
+  //     return _userFromFirebase(user);
+  //   } catch (e) {
+  //     print(e.toString());
+  //     return null;
+  //   }
+  // }
 
   // sign in with email and password
   Future signInWithEmailAndPassword(String email, String pw) async {
