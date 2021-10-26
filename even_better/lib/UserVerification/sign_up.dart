@@ -12,24 +12,6 @@ class SignUp extends StatefulWidget {
 
   final String roseUsername;
 
-  // bool checkPasswordAllowed(String password) {
-  //   if (password.isEmpty) {
-  //     return false;
-  //   }
-  //   bool hasUppercase = password.contains(RegExp(r'[A-Z]'));
-  //   bool hasDigits = password.contains(RegExp(r'[0-9]'));
-  //   bool hasLowercase = password.contains(RegExp(r'[a-z]'));
-  //   bool hasSpecialCharacters =
-  //       password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-  //   bool hasMinLength = password.length >= 8;
-
-  //   return hasDigits &
-  //       hasUppercase &
-  //       hasLowercase &
-  //       hasSpecialCharacters &
-  //       hasMinLength;
-  // }
-
   @override
   State<SignUp> createState() => _SignUpState();
 }
@@ -37,8 +19,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool isValidToSignUp() {
     print("isValidToSignUp()");
-    return verifyPasswords() &&
-        listRequirements(passwordController.text) == "Must contain: \n";
+    return verifyPasswords() && listRequirements(passwordController.text) == "";
   }
 
   bool verifyPasswords() {

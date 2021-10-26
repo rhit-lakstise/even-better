@@ -36,7 +36,7 @@ void registerEB(username, password, roseUsername) {
   if (isUsernameUnique(username)) {
     //TODO: add new credentials to firebase with node call
     print("registration time!");
-    _createAlbumRegisterEB(username, password, roseUsername);
+    createAlbumRegisterEB(username, password, roseUsername);
   } else {
     //TODO: tell the user the password does not match
   }
@@ -49,7 +49,8 @@ bool isUsernameUnique(username) {
   return true;
 }
 
-Future<Album> _createAlbumRegisterEB(username, password, roseUsername) async {
+//make this private but still usable in test case??
+Future<Album> createAlbumRegisterEB(username, password, roseUsername) async {
   final response = await http.post(
     Uri.parse(
         'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
