@@ -1,8 +1,14 @@
+import 'package:even_better/models/user.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'fb_services/auth.dart';
+import 'screens/wrapper.dart';
+import 'models/user.dart';
 
-import 'UserVerification/firsttime.dart';
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -11,12 +17,16 @@ class MyApp extends StatelessWidget {
   static const appTitle = "Even Better";
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: MyApp.appTitle,
-        theme: ThemeData(
-          //TODO: make a custom color swatch with the rose color palette
-          primarySwatch: Colors.red,
-        ),
-        home: const FirstTime());
+    return StreamProvider<MyUser?>.value(
+      value: AuthService().user,
+      initialData: null, //required
+      child: MaterialApp(
+          title: MyApp.appTitle,
+          theme: ThemeData(
+            //TODO: make a custom color swatch with the rose color palette
+            primarySwatch: Colors.red,
+          ),
+          home: Wrapper()),
+    );
   }
 }

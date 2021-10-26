@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "797164344777",
+    "project_id": "evenbetter-ecb67",
+    "storage_bucket": "evenbetter-ecb67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797164344777:android:b37cf2348c5671c7eb4418",
+        "android_client_info": {
+          "package_name": "com.best.even_better"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797164344777-mpeq2jjfp3sgfe2dl5gdthvj6jckdal1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT4uoSEp5fGVlWmc-rPTUkZzYtYRzFXkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797164344777-mpeq2jjfp3sgfe2dl5gdthvj6jckdal1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
