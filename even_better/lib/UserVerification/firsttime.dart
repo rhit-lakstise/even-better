@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import './Helpers/firebase.dart';
 import '../fb_services/auth.dart';
 import 'login.dart';
 import '../main.dart';
@@ -18,8 +19,6 @@ class FirstTime extends StatefulWidget {
 }
 
 class _FirstTimeState extends State<FirstTime> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
   String error = '';
 
   void _registerRose(username, password, context) {
@@ -39,22 +38,6 @@ class _FirstTimeState extends State<FirstTime> {
     }
   }
 
-  Future _requestLoginEB(String username, String password, context) async {
-    //verify account with our FireBase
-
-    print("Even better username: ${username}\n password: ${password}");
-    Future result =
-        _auth.signInWithEmailAndPassword(email: username, password: password);
-    // loginEB(username, password);
-    return result;
-
-    // if (result == null) {
-    //   error = 'Could not sign in with these credentials';
-    // } else {
-    //   Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-    // }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,14 +55,10 @@ class _FirstTimeState extends State<FirstTime> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Login(
+                            builder: (context) => const Login(
                                 label1: "Even Better Username",
                                 label2: "Even Better Password",
-                                submitFunction: () async {
-                                  setState(() {});
-                                  dynamic result = _requestLoginEB;
-                                  if (result == null) {}
-                                })));
+                                submitFunction: requestLoginEB)));
                   },
                   child: const Text("Login")),
               ElevatedButton(

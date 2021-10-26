@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../UserVerification/firsttime.dart';
-import 'Authentication/Authenticate.dart';
+import 'Authentication/authenticate.dart';
 import 'home/home.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
@@ -16,7 +16,7 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     // when user logs in, a user object will be stored in this variable, set to null if logged out.
-    final user = Provider.of<MyUser?>(context);
+    final user = Provider.of<MyUser?>(context, listen: true);
 
     print("${user}  [Wrapper]");
     // return either home or authenticate widget

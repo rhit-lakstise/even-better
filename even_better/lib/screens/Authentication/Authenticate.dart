@@ -1,9 +1,12 @@
+// ignore: file_names
 import 'package:even_better/screens/Authentication/register.dart';
 import 'package:even_better/screens/Authentication/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 
 class Authenticate extends StatefulWidget {
+  const Authenticate({Key? key}) : super(key: key);
+
   @override
   _AuthenticateState createState() => _AuthenticateState();
 }
