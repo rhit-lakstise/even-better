@@ -1,8 +1,5 @@
-import 'package:even_better/screens/home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 

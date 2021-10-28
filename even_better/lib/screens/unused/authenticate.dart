@@ -1,6 +1,4 @@
 // ignore: file_names
-import 'package:even_better/screens/Authentication/register.dart';
-import 'package:even_better/screens/Authentication/sign_in.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 
@@ -19,11 +17,11 @@ class _AuthenticateState extends State<Authenticate> {
 
   @override
   Widget build(BuildContext context) {
-    if (showSignIn) {
-      return SignIn(toggleView: toggleView);
-    } else {
-      return Register(toggleView: toggleView);
-    }
+    // if (showSignIn) {
+    // return SignIn(toggleView: toggleView);
+    // } else {
+    return Register(toggleView: toggleView);
+    // }
     // return Container(
     //   child: Register(),
     // );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'Helpers/rest_api.dart';
 import '../main.dart';
 import './Helpers/labeled_text_field.dart';
 import './Helpers/firebase.dart';

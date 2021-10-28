@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -29,66 +30,57 @@ class Album {
   }
 }
 
-void registerEB(username, password, roseUsername) {
+//probably want to change this to only save username
+void registerRose(roseUsername, password) {
   //check if username is unique -- could do this in the node call potentially
   //or maybe firebase will send back that it was a repeat username
 
-  if (isUsernameUnique(username)) {
+  if (true) {
     //TODO: add new credentials to firebase with node call
     print("registration time!");
-    createAlbumRegisterEB(username, password, roseUsername);
+    createAlbumRegisterRose(roseUsername, password);
   } else {
     //TODO: tell the user the password does not match
   }
 }
 
-bool isUsernameUnique(username) {
-  //run a stored procedure on the server to see if this is unique!
-  //might be better fix on node side of things
-
-  return true;
-}
-
 //make this private but still usable in test case??
-Future<Album> createAlbumRegisterEB(username, password, roseUsername) async {
+Future<Album> createAlbumRegisterRose(roseUsername, password) async {
   final response = await http.post(
-    Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
+    Uri.parse('http://192.168.1.140:3000/rosefire/rose_login'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-      'username': username,
-      'rose-username': roseUsername,
-      'password': password,
-    }),
+    body: jsonEncode(
+        <String, String>{'rose-username': roseUsername, 'password': password}),
   );
   if (response.statusCode == 200 || response.statusCode == 201) {
     Album output = Album.fromJson(jsonDecode(response.body));
     print('signed up ${output.username} with id: ${output.id} ');
     return output;
   } else {
+    print("status code: " + response.statusCode.toString());
     throw Exception('failed to create album');
   }
 }
 
-void loginEB(username, password) {
-  //verify account with our FireBase
-  //if can be updated on node server, then this can stay the same
-  _createAlbumLoginEB(username, password);
-  print("Even better username: ${username}");
-}
+// void loginEB(username, password) {
+//   //verify account with our FireBase
+//   //if can be updated on node server, then this can stay the same
+//   _createAlbumLoginEB(username, password);
+//   print("Even better username: ${username}");
+// }
 
-Future<http.Response> _createAlbumLoginEB(username, password) {
-  return http.post(
-    Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'username': username,
-      'password': password,
-    }),
-  );
-}
+// Future<http.Response> _createAlbumLoginEB(username, password) {
+//   return http.post(
+//     Uri.parse(
+//         'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
+//     headers: <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
+//     },
+//     body: jsonEncode(<String, String>{
+//       'username': username,
+//       'password': password,
+//     }),
+//   );
+// }

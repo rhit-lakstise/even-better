@@ -1,18 +1,13 @@
-import 'package:even_better/screens/home/home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import './Helpers/firebase.dart';
-import '../fb_services/auth.dart';
 import 'login.dart';
 import '../main.dart';
 import 'sign_up.dart';
-import 'Helpers/rest_api.dart';
+import './Helpers/rest_api.dart';
 
 class FirstTime extends StatefulWidget {
-  FirstTime({Key? key}) : super(key: key);
+  const FirstTime({Key? key}) : super(key: key);
 
   @override
   State<FirstTime> createState() => _FirstTimeState();
@@ -22,8 +17,8 @@ class _FirstTimeState extends State<FirstTime> {
   String error = '';
 
   void _registerRose(username, password, context) {
-    print("rose username ${username}");
     //verify account with RoseFire
+    registerRose(username, password);
 
 //for testing
     var credentialsValid = true;

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../UserVerification/firsttime.dart';
-import 'Authentication/authenticate.dart';
 import 'home/home.dart';
 import 'package:provider/provider.dart';
 import '../models/user.dart';
