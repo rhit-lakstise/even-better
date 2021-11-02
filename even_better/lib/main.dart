@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'fb_services/auth.dart';
 import 'screens/wrapper.dart';
 import 'models/user.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() async {
   // HttpOverrides.global = MyHttpOverrides();
@@ -20,17 +21,18 @@ class MyApp extends StatelessWidget {
   static const appTitle = "Even Better";
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<MyUser?>.value(
-      value: AuthService().user,
-      initialData: null, //required
-      child: MaterialApp(
-          title: MyApp.appTitle,
-          theme: ThemeData(
-            //TODO: make a custom color swatch with the rose color palette
-            primarySwatch: Colors.red,
-          ),
-          home: Wrapper()),
-    );
+    return const WebView(initialUrl: "https://google.com");
+    // StreamProvider<MyUser?>.value(
+    //   value: AuthService().user,
+    //   initialData: null, //required
+    //   child: MaterialApp(
+    //       title: MyApp.appTitle,
+    //       theme: ThemeData(
+    //         //TODO: make a custom color swatch with the rose color palette
+    //         primarySwatch: Colors.red,
+    //       ),
+    //       home: Wrapper()),
+    // );
   }
 }
 
@@ -42,3 +44,4 @@ class MyApp extends StatelessWidget {
 //           (X509Certificate cert, String host, int prot) => true;
 //   }
 // }
+
