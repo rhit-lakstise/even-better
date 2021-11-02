@@ -14,9 +14,9 @@ void main() {
     expect(true, listRequirements('InvalidPassword1234') != "");
   });
   //can add more tests after firebase calls work
-  test('sign up testing', () {
-    Future<Album> testAl =
-        createAlbumRegisterEB("testUsername", "testPassword1!", "roseUsrn");
-    testAl.then((value) => {expect("roseUsrn", value.roseUsername)});
-  });
+  // test('sign up testing', () {
+  //   Future<Album> testAl =
+  //       createAlbumRegisterEB("testUsername", "testPassword1!", "roseUsrn");
+  //   testAl.then((value) => {expect("roseUsrn", value.roseUsername)});
+  // });
 }

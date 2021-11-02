@@ -19,7 +19,7 @@ router.post('/rose_login', cors(), (req, res) => {
 
   const options = {
     method: 'GET',
-    host: "api.allorigins.win",
+    // host: "api.allorigins.win",
     // host: "https://api.allorigins.win",
     host: "rosefire.csse.rose-hulman.edu",
     path: "/v2/api/register",

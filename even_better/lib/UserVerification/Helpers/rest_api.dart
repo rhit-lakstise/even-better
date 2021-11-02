@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:webview_flutter/webview_flutter.dart';
 
 //documentation: https://flutter.dev/docs/cookbook/networking/send-data
 //if we need to work with responses, add stuff from here ^
@@ -38,31 +39,42 @@ void registerRose(roseUsername, password) {
   if (true) {
     //TODO: add new credentials to firebase with node call
     print("registration time!");
-    createAlbumRegisterRose(roseUsername, password);
+    // createAlbumRegisterRose(roseUsername, password);
+    _loadRoseFireWebPage();
   } else {
     //TODO: tell the user the password does not match
   }
 }
 
-//make this private but still usable in test case??
-Future<Album> createAlbumRegisterRose(roseUsername, password) async {
-  final response = await http.post(
-    Uri.parse('http://192.168.1.140:3000/rosefire/rose_login'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(
-        <String, String>{'rose-username': roseUsername, 'password': password}),
-  );
-  if (response.statusCode == 200 || response.statusCode == 201) {
-    Album output = Album.fromJson(jsonDecode(response.body));
-    print('signed up ${output.username} with id: ${output.id} ');
-    return output;
-  } else {
-    print("status code: " + response.statusCode.toString());
-    throw Exception('failed to create album');
-  }
+_loadRoseFireWebPage() async {
+  // const url = "https://google.com";
+  // if (await canLaunch(url)) {
+  //   await launch(url);
+  // } else {
+  //   throw 'Could not launch $url';
+  // }
 }
+
+
+//make this private but still usable in test case??
+// Future<Album> createAlbumRegisterRose(roseUsername, password) async {
+//   final response = await http.post(
+//     Uri.parse('http://137.112.229.126:3000/rosefire/rose_login'),
+//     headers: <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
+//     },
+//     body: jsonEncode(
+//         <String, String>{'rose-username': roseUsername, 'password': password}),
+//   );
+//   if (response.statusCode == 200 || response.statusCode == 201) {
+//     Album output = Album.fromJson(jsonDecode(response.body));
+//     print('signed up ${output.username} with id: ${output.id} ');
+//     return output;
+//   } else {
+//     print("status code: " + response.statusCode.toString());
+//     throw Exception('failed to create album');
+//   }
+// }
 
 // void loginEB(username, password) {
 //   //verify account with our FireBase
