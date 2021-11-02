@@ -1,60 +1,53 @@
 var RosefireTokenVerifier = require('rosefire-node');
 const express = require('express');
-  const jwt = require('njwt')
+// const jwt = require('njwt')
 const router = express.Router();
+const https = require('https');
+const cors = require('cors');
 
-let secret ="weCPEXRyXWeYIkOmWKUk"; 
-// let token ="JWT 13b72349-fe0e-4e6a-b2ec-7065d6ee4039"; 
-var rosefire = new RosefireTokenVerifier(secret);
+
+let secret = "weCPEXRyXWeYIkOmWKUk";
+// var rosefire = new RosefireTokenVerifier(secret);
 //stuff is here: X:\sethl\SeniorProject\EvenBetter\even-better\server\node_modules\jsonwebtoken\index.js
-router.post('/rose_login',  (req, res) => {
-  // this.issued_at = decodedJwt.iat;
-  // this.username = decodedJwt.d.uid;
-  // this.group = decodedJwt.d.group;
-  // this.name = decodedJwt.d.name;
-  // this.expires_at = decodedJwt.exp; 
-  // this.provider = decodedJwt.d.provider;
-  // this.email = this.username + "@rose-hulman.edu";
+router.post('/rose_login', cors(), (req, res) => {
 
 
+  console.log("posting...");
+  const url = 'https://api.allorigins.win/get?url=https://example.org/=https://rosefire.csse.rose-hulman.edu/v2/api/register';
+  let key = "13b72349-fe0e-4e6a-b2ec-7065d6ee4039";
 
 
+  const options = {
+    method: 'GET',
+    host: "api.allorigins.win",
+    // host: "https://api.allorigins.win",
+    host: "rosefire.csse.rose-hulman.edu",
+    path: "/v2/api/register",
+    // path: "/get?callback=myFunc&url=https://example.org/=https://rosefire.csse.rose-hulman.edu/v2/api/register",
+    // registryToken: key,
+    data: {
+      email: "lakstise@rose-hulman.edu",
+      password: "sotmtwwgrmI9",
+      secret: secret,
+    },
 
-
-  const claims = { uid: "lakstise", jti: "13b72349-fe0e-4e6a-b2ec-7065d6ee4039"}
-  let token = jwt.create(claims, secret)
-  token.setExpiration(new Date().getTime() + 60*1000)
-  // res.send(token.compact())
-
-  console.log(rosefire);
-  console.log("rose_login starting\n");
-  req.headers.authorization = token;
-  console.log(req.headers);
-  console.log(token);
-  token  =token.toString();
-  console.log(token);
-
-  if (!token) {
-    res.status(401).json({
-      error: 'Not authorized!'
-    });
-    return;
   }
-  // token = token.split(' ')[1]; 
-  rosefire.verify(token, function(err, authData) {
-    if (err) {
-      res.status(401).json({
-        error: err
-      });
-      console.log(err);
-    } else {
-      console.log(authData.username); // rockwotj
-      console.log(authData.issued_at); // <Date Object of issued time> 
-      console.log(authData.group); // STUDENT (Only there if options asked)
-      console.log(authData.expires) // <Date Object> (Only there if options asked)
-      res.json(authData);
-    }
-  });
+  //https://nodejs.org/api/http.html#httprequestoptions-callback
+
+  https.get(options, res => {
+    let data = '';
+    res.on('data', chunk => {
+      data += chunk;
+    });
+    res.on('end', () => {
+      // data = JSON.parse(data);
+      console.log("here it is: " + data);
+    })
+  }).on('error', err => {
+    console.log("request error: " + err);
+  })
+  // console.log(rosefire);
+
 });
 
 
