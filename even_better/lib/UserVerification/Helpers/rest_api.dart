@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:webview_flutter/webview_flutter.dart';
 
 //documentation: https://flutter.dev/docs/cookbook/networking/send-data
 //if we need to work with responses, add stuff from here ^
