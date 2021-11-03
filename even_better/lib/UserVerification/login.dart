@@ -2,18 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import 'Helpers/labeled_text_field.dart';
+import './Helpers/firebase.dart';
 
 class Login extends StatefulWidget {
   const Login({
-    this.label1 = "Username",
-    this.label2 = "Password",
-    required this.submitFunction,
     Key? key,
   }) : super(key: key);
-
-  final Function submitFunction;
-  final String label1;
-  final String label2;
 
   @override
   State<Login> createState() => _LoginState();
@@ -35,7 +29,7 @@ class _LoginState extends State<Login> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             LabeledTextField(
-              label: widget.label1,
+              label: "Even Better Username",
               textEditingController: usernameController,
               isPassword: false,
               isSignUpPassword: false,
@@ -44,7 +38,7 @@ class _LoginState extends State<Login> {
             Container(
               margin: const EdgeInsets.only(top: 35),
               child: LabeledTextField(
-                  label: widget.label2,
+                  label: "Even Better Password",
                   textEditingController: passwordController,
                   isPassword: true,
                   isSignUpPassword: false,
@@ -54,7 +48,7 @@ class _LoginState extends State<Login> {
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
                     onPressed: () {
-                      widget.submitFunction(usernameController.text,
+                      requestLoginEB(usernameController.text,
                           passwordController.text, context);
                     },
                     child: const Text("Login"))),
