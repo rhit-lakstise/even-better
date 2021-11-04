@@ -31,6 +31,9 @@ dependencies:
     sdk: flutter
   http: 0.13.4
   passwordfield: ^0.1.0
+  socket_io_client: ^1.0.1
+  flutter_chat_ui: ^1.5.1
+  flutter_chat_types: ^3.2.0
 
 
   # The following adds the Cupertino Icons font to your application.
