@@ -39,7 +39,7 @@ Future<Album> createAlbumValidateRose(roseUsername) async {
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{'username': roseUsername}),
+    body: jsonEncode(<String, String>{'rose-username': roseUsername}),
   );
   if (response.statusCode == 200 || response.statusCode == 201) {
     Album output = Album.fromJson(jsonDecode(response.body));
