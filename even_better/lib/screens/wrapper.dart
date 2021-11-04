@@ -1,3 +1,4 @@
+import 'package:even_better/post/feed_screen.dart';
 import 'package:flutter/material.dart';
 import '../UserVerification/firsttime.dart';
 import 'home/home.dart';
@@ -25,7 +26,7 @@ class _WrapperState extends State<Wrapper> {
       return FirstTime();
     } else {
       print('home page [Wrapper]');
-      return Home();
+      return FeedScreen();
     }
   }
 }
