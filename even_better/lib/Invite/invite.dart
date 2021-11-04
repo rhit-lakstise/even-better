@@ -24,7 +24,7 @@ class _InviteState extends State<Invite> {
   void  getItemData() async {
 
     final uri =
-    Uri.http('10.0.2.2:3000', '/students/list', {'year': widget.year.toString()});
+    Uri.http('ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000', '/students/list', {'year': widget.year.toString()});
 
     final response = await http.get(uri, headers: <String, String>{
          'Content-Type': 'application/json; charset=UTF-8',

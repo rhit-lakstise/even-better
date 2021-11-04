@@ -28,7 +28,7 @@ class _SelectUserState extends State<SelectUser> {
     List<Widget> listItems = [];
     Map<Widget, String> listMap = {};
 
-    final uri = Uri.http('10.0.2.2:3000', '/students/all',
+    final uri = Uri.http('ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000', '/students/all',
         {}); //in future don't grab all students
     final response = await http.get(uri, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
