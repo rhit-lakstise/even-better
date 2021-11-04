@@ -1,3 +1,4 @@
+import 'package:even_better/fb_services/auth.dart';
 import 'package:even_better/post/addpost.dart';
 import 'package:even_better/profile/profile_change.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class ProfileApp extends StatefulWidget {
 }
 
 class ProfileAppState extends State<ProfileApp> {
+  final AuthService _auth = AuthService();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController postController = TextEditingController();
   final picker = ImagePicker();
@@ -75,6 +77,21 @@ class ProfileAppState extends State<ProfileApp> {
         elevation: 20.0,
         //IconButton
         brightness: Brightness.dark,
+        actions: <Widget>[
+          FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text(
+                'logout',
+                style: TextStyle(
+                  fontFamily: 'EB',
+                  fontSize: 25.0,
+                  color: Colors.black87,
+                ),
+              ),
+              onPressed: () async {
+                await _auth.signOut();
+              })
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

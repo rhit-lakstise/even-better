@@ -12,12 +12,24 @@ void main() async {
   // HttpOverrides.global = MyHttpOverrides();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
   static const appTitle = "Even Better";
+  final Map<int, Color> customColors = ({
+    50: const Color(0xFF330000),
+    100: const Color(0xFF330000),
+    200: const Color(0xFF330000),
+    300: const Color(0xFF800000),
+    400: const Color(0xFF800000),
+    500: const Color(0xFF800000),
+    600: const Color(0xFFCC1414),
+    700: const Color(0xFFCC1414),
+    800: const Color(0xFF96084F),
+    900: const Color(0xFF96084F)
+  });
   @override
   Widget build(BuildContext context) {
     return StreamProvider<MyUser?>.value(
@@ -27,9 +39,9 @@ class MyApp extends StatelessWidget {
           title: MyApp.appTitle,
           theme: ThemeData(
             //TODO: make a custom color swatch with the rose color palette
-            primarySwatch: Colors.red,
+            primarySwatch: MaterialColor(0xFF800000, customColors),
           ),
-          home: Wrapper()),
+          home: const Wrapper()),
     );
   }
 }
