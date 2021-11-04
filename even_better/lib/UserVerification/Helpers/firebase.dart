@@ -20,4 +20,5 @@ void requestSignUpEB(String username, String password, context) async {
   //pop away the current path!
   Navigator.pop(context);
   Navigator.pop(context);
+  Navigator.pop(context);
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -13,8 +12,10 @@ class Album {
   });
 
   factory Album.fromJson(Map<String, dynamic> json) {
+    // print(json['message']);
     return Album(
-      message: json['message'],
+      //for whatever reason dynamic makes this parse directly to a boolean :(
+      message: json['message'] ? "true" : "false",
     );
   }
 }
@@ -51,6 +52,25 @@ Future<Album> createAlbumValidateRose(roseUsername) async {
   }
 }
 
+//TODO: implement me!!
+Future<Album> createAlbumValidateOtp(code) async {
+  final response = await http.post(
+    Uri.parse(
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/validatecode'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{'code': code}),
+  );
+  if (response.statusCode == 200 || response.statusCode == 201) {
+    Album output = Album.fromJson(jsonDecode(response.body));
+    print("message is: " + output.message);
+    return output;
+  } else {
+    print("status code: " + response.statusCode.toString());
+    throw Exception('failed to create album');
+  }
+}
 // void loginEB(username, password) {
 //   //verify account with our FireBase
 //   //if can be updated on node server, then this can stay the same
