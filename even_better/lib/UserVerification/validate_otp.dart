@@ -1,38 +1,40 @@
 import 'package:even_better/UserVerification/sign_up.dart';
-import 'package:even_better/UserVerification/validate_otp.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
 import 'Helpers/labeled_text_field.dart';
 import 'Helpers/rest_api.dart';
 
-class ValidateRose extends StatefulWidget {
-  const ValidateRose({
+class ValidateOtp extends StatefulWidget {
+  const ValidateOtp({
+    required this.roseUsername,
     Key? key,
   }) : super(key: key);
-
+  final String roseUsername;
   @override
-  State<ValidateRose> createState() => _ValidateRoseState();
+  State<ValidateOtp> createState() => _ValidateOtpState();
 }
 
-class _ValidateRoseState extends State<ValidateRose> {
-  final TextEditingController usernameController = TextEditingController();
-  var validEmail = true;
+class _ValidateOtpState extends State<ValidateOtp> {
+  final TextEditingController codeController = TextEditingController();
+  var validOtp = true;
   late Future<Album> futureAlbum;
-
-  void _registerRose(username) {
+  void _verifyOtp(code) {
     //verify account with RoseFire
-    futureAlbum = createAlbumValidateRose(username);
-    futureAlbum.then((album) => setState(() {
-          //worth to check if == "false" ?
-          validEmail = album.message == "true";
-          if (validEmail) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ValidateOtp(roseUsername: username)));
-          }
-        }));
+    // futureAlbum = createAlbumValidateOtp(code);
+    // futureAlbum.then((album) => setState(() {
+    //worth to check if == "false" ?
+    validOtp = true;
+    //album.message == "true";
+    if (validOtp) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => SignUp(
+                    roseUsername: widget.roseUsername,
+                  )));
+    }
+    // }));
 
 //for testing
   }
@@ -48,12 +50,9 @@ class _ValidateRoseState extends State<ValidateRose> {
         child: ListView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            Container(
-                margin: EdgeInsets.only(bottom: 10),
-                child: Text("Enter your Rose-Hulman Username")),
             LabeledTextField(
-              label: "(exclude @rose-hulman.edu)",
-              textEditingController: usernameController,
+              label: "Enter code from email address",
+              textEditingController: codeController,
               isPassword: false,
               isSignUpPassword: false,
               onSubmit: (String val) {},
@@ -62,15 +61,16 @@ class _ValidateRoseState extends State<ValidateRose> {
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
                     onPressed: () {
-                      _registerRose(usernameController.text);
+                      //validate OTP!!
+                      _verifyOtp(codeController.text);
                     },
                     child: const Text("Continue"))),
-            validEmail
+            validOtp
                 ? Text("")
                 //must be error
                 : Container(
                     margin: const EdgeInsets.only(top: 10),
-                    child: const Text("Invalid Rose-Hulman email, error ",
+                    child: const Text("Invalid code",
                         style: TextStyle(
                           color: Colors.red,
                         )),
