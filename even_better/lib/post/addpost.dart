@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'package:even_better/fb_services/auth.dart';
 import 'package:even_better/post/feed_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:even_better/screens/api.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +15,8 @@ class ImageFromGalleryEx extends StatefulWidget {
 }
 
 class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
+  final AuthService _auth = AuthService();
+  final FirebaseAuth auth = FirebaseAuth.instance;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController postController = TextEditingController();
   final picker = ImagePicker();
@@ -31,6 +35,12 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
     titleController.dispose();
     postController.dispose();
     super.dispose();
+  }
+
+  void inputData() {
+    final User? user = auth.currentUser;
+    final uid = user!.uid;
+    // here you write the codes to input the data into firestore
   }
 
   void _showPicker(context) {

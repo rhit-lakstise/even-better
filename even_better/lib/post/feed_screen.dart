@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:even_better/Chat/select_user.dart';
 import 'package:even_better/screens/my_flutter_app_icons.dart';
 import 'package:meta/meta.dart';
 import 'package:even_better/profile/profile.dart';
@@ -331,7 +332,18 @@ class _FeedScreenState extends State<FeedScreen> {
                     child: IconButton(
                       icon: const Icon(Icons.send),
                       iconSize: 30.0,
-                      onPressed: () => print('Direct Messages'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                SelectUser(currentStudent: "Jamari Morrison"),
+                          ),
+                        );
+                      }
+
+                      // => print('Direct Messages')
+                      ,
                     ),
                   )
                 ],
