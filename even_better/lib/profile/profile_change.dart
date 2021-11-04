@@ -1,3 +1,4 @@
+import 'package:even_better/post/feed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:even_better/screens/api.dart';
 
@@ -69,7 +70,7 @@ class ProfileUpdateState extends State<ProfileUpdate> {
           style: TextStyle(
             fontFamily: 'Billabong',
             fontSize: 35.0,
-            color: Color(0xFFF48FB1),
+            color: CompanyColors.red,
           ),
         ),
         //<Widget>[]

@@ -21,6 +21,7 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget p = _noaddNewPost();
   List<Widget> ps = <Widget>[];
   Widget l = _noaddNewPosts();
+
   Image getAvatorImage() {
     return Image(
       height: 50.0,
@@ -321,7 +322,7 @@ class _FeedScreenState extends State<FeedScreen> {
                 style: TextStyle(
                   fontFamily: 'Billabong',
                   fontSize: 35.0,
-                  color: Color(0xFFF48FB1),
+                  color: CompanyColors.red,
                 ),
               ),
               Row(
@@ -467,5 +468,27 @@ Widget _noaddNewPost() {
         ),
       ),
     ),
+  );
+}
+
+class CompanyColors {
+  CompanyColors._(); // this basically makes it so you can instantiate this class
+
+  static const _redColor = 0xFF800000;
+
+  static const MaterialColor red = MaterialColor(
+    _redColor,
+    <int, Color>{
+      50: Color(0xFF330000),
+      100: Color(0xFF330000),
+      200: Color(0xFF330000),
+      300: Color(0xFF800000),
+      400: Color(0xFF800000),
+      500: Color(0xFF800000),
+      600: Color(0xFFCC1414),
+      700: Color(0xFFCC1414),
+      800: Color(0xFF96084F),
+      900: Color(0xFF96084F)
+    },
   );
 }

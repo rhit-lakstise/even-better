@@ -1,5 +1,6 @@
 import 'package:even_better/fb_services/auth.dart';
 import 'package:even_better/post/addpost.dart';
+import 'package:even_better/post/feed_screen.dart';
 import 'package:even_better/profile/profile_change.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -68,7 +69,7 @@ class ProfileAppState extends State<ProfileApp> {
           style: TextStyle(
             fontFamily: 'Billabong',
             fontSize: 35.0,
-            color: Color(0xFFF48FB1),
+            color: CompanyColors.red,
           ),
         ),
 
