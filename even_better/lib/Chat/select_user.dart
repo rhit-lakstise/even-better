@@ -1,12 +1,11 @@
+import 'package:even_better/Invite/invite_year.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'direct_message.dart';
 
-
 class SelectUser extends StatefulWidget {
-
   const SelectUser({
     required this.currentStudent,
     Key? key,
@@ -20,64 +19,78 @@ class SelectUser extends StatefulWidget {
 class _SelectUserState extends State<SelectUser> {
   List<Widget> itemsData = [];
   List<Widget> coreItems = [];
-  Map<Widget,String> nameMap = {};
+  Map<Widget, String> nameMap = {};
   String searchString = "";
-  Icon customIcon = Icon(Icons.search);
+  Icon searchIcon = Icon(Icons.search);
   Widget customSearchBar = const Text('Find friends');
 
   void getItemData() async {
     List<Widget> listItems = [];
-    Map<Widget,String> listMap = {};
+    Map<Widget, String> listMap = {};
 
-    final uri =
-    Uri.http('10.0.2.2:3000', '/students/all', {}); //in future don't grab all students
+    final uri = Uri.http('10.0.2.2:3000', '/students/all',
+        {}); //in future don't grab all students
     final response = await http.get(uri, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     });
     List<dynamic> responseList = jsonDecode(response.body);
 
-
     for (var student in responseList) {
       Widget toAdd = Visibility(
         child: ElevatedButton(
-            child:  Text(student['name']),
+            child: Text(student['name']),
             onPressed: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DirectMessage(currentStudent: widget.currentStudent, recipient: student['name'],)));
+                      builder: (context) => DirectMessage(
+                            currentStudent: widget.currentStudent,
+                            recipient: student['name'],
+                          )));
             }),
         visible: student['name'].contains(searchString),
       );
       listItems.add(toAdd);
-      listMap[toAdd]=student['name'];
-
+      listMap[toAdd] = student['name'];
     }
 
     setState(() {
       itemsData = listItems;
       nameMap = listMap;
-      for(var v in listItems){
+      for (var v in listItems) {
         coreItems.add(v);
       }
-
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: customSearchBar,
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
+              icon: Icon(
+                Icons.add_circle_outline_rounded,
+                color: Colors.white,
+              ),
               onPressed: () {
-                setState((){
-                  if (customIcon.icon == Icons.search) {
-                    customIcon = const Icon(Icons.cancel);
-                    customSearchBar =  ListTile(
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) =>
+                        InviteYear(currentStudent: "Jamari Morrison"),
+                  ),
+                );
+              },
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  if (searchIcon.icon == Icons.search) {
+                    searchIcon = const Icon(Icons.cancel);
+                    customSearchBar = ListTile(
                       leading: const Icon(
                         Icons.search,
                         color: Colors.white,
@@ -90,7 +103,6 @@ class _SelectUserState extends State<SelectUser> {
                             color: Colors.white,
                             fontSize: 18,
                             fontStyle: FontStyle.italic,
-
                           ),
                           border: InputBorder.none,
                         ),
@@ -98,52 +110,42 @@ class _SelectUserState extends State<SelectUser> {
                           color: Colors.white,
                         ),
                         onChanged: (text) {
-                            setState(() {
-                              itemsData.clear();
-                              for(var student in coreItems){
-                                  if(nameMap[student]!.contains(text)){
-                                    itemsData.add(student);
-                                }
+                          setState(() {
+                            itemsData.clear();
+                            for (var student in coreItems) {
+                              if (nameMap[student]!.contains(text)) {
+                                itemsData.add(student);
                               }
-                            });
+                            }
+                          });
                         },
                       ),
                     );
                   }
                 });
-
               },
-              icon: customIcon,
+              icon: searchIcon,
             )
           ],
           centerTitle: true,
         ),
-
         body: Container(
-
             child: Column(
-
-              children: [
-
-                Expanded(
-                    child: ListView.builder(
-                        itemCount: itemsData.length,
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return itemsData[index];
-                        }))
-
-              ],
-            )
-
-
-        ));
+          children: [
+            Expanded(
+                child: ListView.builder(
+                    itemCount: itemsData.length,
+                    physics: BouncingScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return itemsData[index];
+                    }))
+          ],
+        )));
   }
 
   @override
   void initState() {
     super.initState();
     getItemData();
-
   }
 }
