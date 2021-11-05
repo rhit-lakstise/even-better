@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:even_better/Chat/select_user.dart';
+import 'package:even_better/forum/data.dart';
 import 'package:even_better/forum/forum.dart';
 import 'package:even_better/screens/my_flutter_app_icons.dart';
 import 'package:meta/meta.dart';
@@ -218,7 +219,8 @@ class _FeedScreenState extends State<FeedScreen> {
         child = _postHome();
         break;
       case 3:
-        ForumListPage();
+        ForumListPage(Data([], [], []));
+        break;
       case 4:
         child = ProfileApp();
         break;
