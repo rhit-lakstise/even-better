@@ -21,7 +21,13 @@ class _FirstTimeState extends State<FirstTime> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(MyApp.appTitle),
+        title: const Text(
+          MyApp.appTitle,
+          style: TextStyle(
+            fontFamily: 'Billabong',
+            fontSize: 35.0,
+          ),
+        ),
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),
@@ -34,9 +40,23 @@ class _FirstTimeState extends State<FirstTime> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const Login()));
                   },
-                  child: const Text("Login")),
+                  child: const Text(
+                    "Login",
+                    style: TextStyle(
+                      fontFamily: 'EB',
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  )),
               ElevatedButton(
-                  child: const Text("Sign Up"),
+                  child: const Text(
+                    "Sign Up",
+                    style: TextStyle(
+                      fontFamily: 'EBX',
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                   onPressed: () {
                     Navigator.push(
                         context,

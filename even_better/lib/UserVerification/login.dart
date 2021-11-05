@@ -21,7 +21,11 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(MyApp.appTitle),
+        title: const Text(MyApp.appTitle,
+            style: TextStyle(
+              fontFamily: 'Billabong',
+              fontSize: 35.0,
+            )),
       ),
       body: Container(
         margin: const EdgeInsets.only(left: 20, right: 20, top: 50),

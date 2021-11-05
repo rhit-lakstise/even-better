@@ -23,7 +23,7 @@ class ProfileAppState extends State<ProfileApp> {
   bool cs = true;
   bool se = false;
   bool ds = false;
-  String _name = 'Yolanda White';
+  String _name = 'Jamari Morrison';
   String _bio = ' ';
 
   // SizedBox sb = _noupdateProfile();
