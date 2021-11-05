@@ -219,7 +219,7 @@ class _FeedScreenState extends State<FeedScreen> {
         child = _postHome();
         break;
       case 3:
-        ForumListPage(Data([], [], []));
+        child = ForumListPage(Data([], [], []));
         break;
       case 4:
         child = ProfileApp();
