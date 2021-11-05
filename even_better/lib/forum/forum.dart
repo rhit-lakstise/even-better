@@ -195,32 +195,33 @@ class _ForumListPageState extends State<ForumListPage> {
           )),
     );
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        elevation: 0.0,
-        title: const Text("Even Better Forum"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            onPressed: _onCreateForumPressed,
-          ),
-        ],
-      ),
-      body: Container(
-        child: Column(
-          children: <Widget>[topTagGroup, listpage],
-
-          // <Widget>[
-          //   Row(
-          //     children: <Widget>[topTagGroup],
-          //   ),
-          //   // Expanded(
-          //   //   child: listpage,
-          //   // )
-          // ],
+        appBar: AppBar(
+          centerTitle: false,
+          elevation: 0.0,
+          title: const Text("Even Better Forum"),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add_circle),
+              onPressed: _onCreateForumPressed,
+            ),
+          ],
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: <Widget>[topTagGroup, listpage],
+
+              // <Widget>[
+              //   Row(
+              //     children: <Widget>[topTagGroup],
+              //   ),
+              //   // Expanded(
+              //   //   child: listpage,
+              //   // )
+              // ],
+            ),
+          ),
+        ));
   }
 
   void _onDotsPressed() {
