@@ -31,7 +31,7 @@ class _InviteYearState extends State<InviteYear> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Invite(currentStudent: '', year: year,)));
+                    builder: (context) => Invite(currentStudent: 'Jamari Morrison', year: year,)));
           }));
     }
 
