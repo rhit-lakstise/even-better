@@ -154,7 +154,7 @@ class ProfileAppState extends State<ProfileApp> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
                             Text(
-                              "Username: chenx16",
+                              "Username: Jamari Morrison",
                               style: TextStyle(
                                 fontFamily: 'EB',
                                 fontSize: 22.0,

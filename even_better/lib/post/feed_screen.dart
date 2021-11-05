@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:even_better/Chat/select_user.dart';
+import 'package:even_better/forum/forum.dart';
 import 'package:even_better/screens/my_flutter_app_icons.dart';
 import 'package:meta/meta.dart';
 import 'package:even_better/profile/profile.dart';
@@ -17,7 +18,7 @@ class FeedScreen extends StatefulWidget {
 
 class _FeedScreenState extends State<FeedScreen> {
   bool _hasBeenPressed = false;
-  final String username = 'chenx16';
+  final String username = 'Jamari Morrison';
   Widget p = _noaddNewPost();
   List<Widget> ps = <Widget>[];
   Widget l = _noaddNewPosts();
@@ -216,13 +217,14 @@ class _FeedScreenState extends State<FeedScreen> {
       case 0:
         child = _postHome();
         break;
-
+      case 3:
+        ForumListPage();
       case 4:
         child = ProfileApp();
         break;
     }
     return Scaffold(
-      backgroundColor: const Color(0xFFEDF0F6),
+      backgroundColor: const Color(0xFFE0E0E0),
       bottomNavigationBar: _bottomTab(),
       body: SizedBox.expand(child: child),
     );

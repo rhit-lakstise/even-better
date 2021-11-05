@@ -94,7 +94,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFE0E0E0),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
@@ -102,7 +102,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
           style: TextStyle(
             fontFamily: 'Billabong',
             fontSize: 35.0,
-            color: Color(0xFFF48FB1),
+            color: CompanyColors.red,
           ),
         ),
         //<Widget>[]
@@ -128,7 +128,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
                   },
                   child: CircleAvatar(
                     radius: 150,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Color(0xFFE0E0E0),
                     child: _image != null
                         ? ClipRRect(
                             borderRadius: BorderRadius.circular(50),
