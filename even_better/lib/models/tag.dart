@@ -6,9 +6,9 @@ class Tag extends StatelessWidget {
   final String name;
   // List<String> tagged_forum = <String>[];
   List<Forum_Post> tagged_forum = <Forum_Post>[];
-  String set = "1";
+  static String set = "1";
 
-  Tag(this.name, this.set) {
+  Tag(this.name, set) {
     // tagged_forum = <String>[];
     print("the tag with name ${name} is created [Tag]");
   }
@@ -27,6 +27,15 @@ class Tag extends StatelessWidget {
     print("the forum post is added to the tag ${name}");
   }
 
+  static Tag changeColor(Tag t) {
+    if (Tag.set == "1") {
+      set = "";
+      return t;
+    } else {
+      set = "1";
+      return t;
+    }
+  }
   // List<String> get post => tagged_forum;
 
   @override

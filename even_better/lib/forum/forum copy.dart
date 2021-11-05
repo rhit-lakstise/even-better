@@ -4,6 +4,7 @@ import 'package:even_better/forum/create_forum.dart';
 import 'package:even_better/forum/data.dart';
 import 'package:even_better/forum/showAllTags.dart';
 import 'package:even_better/models/forum_post.dart';
+import 'package:even_better/post/feed_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:even_better/models/forum_post.dart' as fp;
 
@@ -147,7 +148,7 @@ class _ForumListPageState extends State<ForumListPage2> {
             vertical: 0.0,
           ),
           decoration: const BoxDecoration(
-            color: Colors.red,
+            color: CompanyColors.red,
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
           child: Column(
@@ -201,32 +202,37 @@ class _ForumListPageState extends State<ForumListPage2> {
           )),
     );
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        elevation: 0.0,
-        title: const Text("Even Better Forum"),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            onPressed: _onCreateForumPressed,
-          ),
-        ],
-      ),
-      body: Container(
-        child: Column(
-          children: <Widget>[topTagGroup, listpage],
-
-          // <Widget>[
-          //   Row(
-          //     children: <Widget>[topTagGroup],
-          //   ),
-          //   // Expanded(
-          //   //   child: listpage,
-          //   // )
-          // ],
+        appBar: AppBar(
+          centerTitle: false,
+          elevation: 0.0,
+          title: const Text("Even Better Forum"),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.add_circle),
+              onPressed: _onCreateForumPressed,
+            ),
+            IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: _onbackPressed,
+            ),
+          ],
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: <Widget>[SizedBox(height: 5.0), topTagGroup, listpage],
+
+              // <Widget>[
+              //   Row(
+              //     children: <Widget>[topTagGroup],
+              //   ),
+              //   // Expanded(
+              //   //   child: listpage,
+              //   // )
+              // ],
+            ),
+          ),
+        ));
   }
 
   void _onDotsPressed() {
@@ -242,6 +248,15 @@ class _ForumListPageState extends State<ForumListPage2> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => createForum(db)),
+    );
+  }
+
+  void _onbackPressed() {
+    // Navigator.pop(context);
+    print('add new post');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FeedScreen()),
     );
   }
 }

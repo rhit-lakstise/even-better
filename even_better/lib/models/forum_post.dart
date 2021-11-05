@@ -48,7 +48,7 @@ class ForumPost extends StatelessWidget {
       padding: const EdgeInsets.all(3.0),
       margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
       decoration: const BoxDecoration(
-        color: Colors.grey,
+        color: const Color(0xFFE0E0E0),
         borderRadius: BorderRadius.all(Radius.circular(20.0)),
       ),
       child: ListTile(

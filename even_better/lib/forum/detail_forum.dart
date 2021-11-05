@@ -77,7 +77,11 @@ class _DetailedForum extends State<DetailedForum> {
         ));
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forum"),
+        title: const Text("Forum",
+            style: TextStyle(
+              fontFamily: 'Billabong',
+              fontSize: 30.0,
+            )),
         actions: <Widget>[
           IconButton(
             onPressed: () {

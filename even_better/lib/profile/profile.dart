@@ -63,6 +63,7 @@ class ProfileAppState extends State<ProfileApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      // backgroundColor: const Color(0xFFE0E0E0),
       appBar: AppBar(
         title: const Text(
           'Even Better',

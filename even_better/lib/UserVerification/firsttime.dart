@@ -43,12 +43,12 @@ class _FirstTimeState extends State<FirstTime> {
                         MaterialPageRoute(
                             builder: (context) => const ValidateRose()));
                   }),
-              ElevatedButton(
-                  child: const Text("Invite Friends"),
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
-                  }),
+              // ElevatedButton(
+              //     child: const Text("Invite Friends"),
+              //     onPressed: () {
+              //       Navigator.push(context,
+              //           MaterialPageRoute(builder: (context) => const Login()));
+              //     }),
             ],
           ),
         ),

@@ -22,14 +22,21 @@ class _SelectUserState extends State<SelectUser> {
   Map<Widget, String> nameMap = {};
   String searchString = "";
   Icon searchIcon = Icon(Icons.search);
-  Widget customSearchBar = const Text('Find friends');
+  Widget customSearchBar = const Text(
+    'Find friends',
+    style: TextStyle(
+      fontFamily: 'Billabong',
+      fontSize: 35.0,
+    ),
+  );
 
   void getItemData() async {
     List<Widget> listItems = [];
     Map<Widget, String> listMap = {};
 
-    final uri = Uri.http('ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000', '/students/all',
-        {}); //in future don't grab all students
+    final uri = Uri.http(
+        'ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000',
+        '/students/all', {}); //in future don't grab all students
     final response = await http.get(uri, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     });

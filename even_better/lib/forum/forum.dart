@@ -2,6 +2,7 @@ import 'package:even_better/forum/create_forum.dart';
 import 'package:even_better/models/forum_post.dart' as fp;
 import 'package:even_better/forum/data.dart';
 import 'package:even_better/forum/showAllTags.dart';
+import 'package:even_better/post/feed_screen.dart';
 import 'package:flutter/material.dart';
 
 class ForumListPage extends StatefulWidget {
@@ -140,8 +141,8 @@ class _ForumListPageState extends State<ForumListPage> {
             horizontal: 10.0,
             vertical: 0.0,
           ),
-          decoration: const BoxDecoration(
-            color: Colors.red,
+          decoration: BoxDecoration(
+            color: CompanyColors.red,
             borderRadius: BorderRadius.all(Radius.circular(30.0)),
           ),
           child: Column(
@@ -198,7 +199,11 @@ class _ForumListPageState extends State<ForumListPage> {
         appBar: AppBar(
           centerTitle: false,
           elevation: 0.0,
-          title: const Text("Even Better Forum"),
+          title: const Text("Even Better Forum",
+              style: TextStyle(
+                fontFamily: 'Billabong',
+                fontSize: 30.0,
+              )),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.add_circle),
@@ -209,7 +214,7 @@ class _ForumListPageState extends State<ForumListPage> {
         body: SingleChildScrollView(
           child: Container(
             child: Column(
-              children: <Widget>[topTagGroup, listpage],
+              children: <Widget>[SizedBox(height: 5.0), topTagGroup, listpage],
 
               // <Widget>[
               //   Row(

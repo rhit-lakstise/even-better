@@ -50,6 +50,14 @@ class _FeedScreenState extends State<FeedScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(25.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
         ),
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,7 +170,7 @@ class _FeedScreenState extends State<FeedScreen> {
                                   },
                                 ),
                                 const Text(
-                                  '350',
+                                  '0',
                                   style: TextStyle(
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.w600,
@@ -226,7 +234,7 @@ class _FeedScreenState extends State<FeedScreen> {
         break;
     }
     return Scaffold(
-      backgroundColor: const Color(0xFFE0E0E0),
+      backgroundColor: Colors.grey[100],
       bottomNavigationBar: _bottomTab(),
       body: SizedBox.expand(child: child),
     );
@@ -441,7 +449,7 @@ Widget _noaddNewPosts() {
         style: TextStyle(
           fontFamily: 'Billabong',
           fontSize: 30.0,
-          color: Colors.red,
+          color: CompanyColors.red,
         ),
       ),
     ),

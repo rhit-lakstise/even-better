@@ -2,6 +2,8 @@ import 'package:even_better/forum/data.dart';
 import 'package:even_better/forum/forum%20copy.dart';
 import 'package:even_better/models/forum_post.dart';
 import 'package:even_better/models/tag.dart';
+import 'package:even_better/models/tag.dart' as tagg;
+import 'package:even_better/post/feed_screen.dart';
 import 'package:flutter/material.dart';
 
 class createForum extends StatefulWidget {
@@ -23,8 +25,9 @@ class _createForumState extends State<createForum> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          backgroundColor: Colors.red[400],
+          // backgroundColor: CompanyColors.red,
           elevation: 0.0,
           title: const Text('What do you think?'),
         ),
@@ -70,7 +73,7 @@ class _createForumState extends State<createForum> {
                                     MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  db.tags[0],
+                                  Tag.changeColor(db.tags[0]),
                                   db.tags[1],
                                   db.tags[2]
                                 ],
@@ -164,7 +167,7 @@ class _createForumState extends State<createForum> {
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   print(title);
-                                  var newpost = Forum_Post("morrison jamari",
+                                  var newpost = Forum_Post("Jamari Morrison",
                                       "forum6", title, content, [], []);
                                   // TODO: implement submit comment
                                   Navigator.push(
