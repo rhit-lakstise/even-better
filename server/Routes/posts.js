@@ -21,7 +21,9 @@ router.post('/create', (req, res) => {
         "title": req.body.title,
         "description": req.body.description || "",
         "picture-uri": req.body['picture-uri'] || "",
-        "likes": req.body.likes || 0
+        "likes": req.body.likes || 0,
+        "timestamp": req.body.timestamp,
+        "poster": req.body.poster
     });
 
     post.save()
