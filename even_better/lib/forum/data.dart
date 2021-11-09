@@ -17,10 +17,10 @@ class Data extends StatefulWidget {
       "Finally, it would interesting to explore whether the gap between actual and perceived abilities might be greater among those higher in SES. One potential alternative explanation is that people who are higher in SES may actually be above average in terms of a number of skills and abilities. ");
   var Answer5 = Forum_Answer("answer5", "Katelin",
       "Generating random paragraphs can be an excellent way for writers to get their creative flow going at the beginning of the day. The writer has no idea what topic the random paragraph will be about when it appears. This forces the writer to use creativity to complete one of three common writing challenges. The writer can use the paragraph as the first one of a short story and build upon it. ");
-  var Tag1 = Tag("Framework", "");
-  var Tag2 = Tag("Company", "");
-  var Tag3 = Tag("Project", "");
-  var Tag4 = Tag("OO Design", "");
+  var Tag1 = Tag("Framework", "1");
+  var Tag2 = Tag("Company", "1");
+  var Tag3 = Tag("Project", "1");
+  var Tag4 = Tag("OO Design", "1");
   Data(this.tags, this.answers, this.posts);
 
   @override
