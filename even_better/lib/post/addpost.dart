@@ -172,7 +172,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
                             // height: 500,
                             child: Icon(
                               Icons.camera_alt,
-                              color: Colors.redAccent[200],
+                              color: CompanyColors.red[300],
                             ),
                           ),
                   ),
@@ -210,29 +210,37 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.red),
+                          MaterialStateProperty.all<Color>(CompanyColors.red),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ))),
                   onPressed: () {
-                    DateTime now = DateTime.now();
-                    String formattedDate =
-                        DateFormat('yyyy-MM-dd kk:mm').format(now);
-                    print(formattedDate);
-                    createPost(
-                        titleController.text.replaceAll('\n', ' '),
-                        postController.text.trim(),
-                        _image!.path,
-                        0,
-                        formattedDate);
-                    Navigator.pop(
-                        context,
-                        NewPost(
-                            formattedDate,
-                            _image!.path,
-                            titleController.text.replaceAll('\n', ' '),
-                            postController.text.trim()));
+                    if (_image == null) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            _buildPopupDialog(context),
+                      );
+                    } else {
+                      DateTime now = DateTime.now();
+                      String formattedDate =
+                          DateFormat('yyyy-MM-dd kk:mm').format(now);
+                      print(formattedDate);
+                      createPost(
+                          titleController.text.replaceAll('\n', ' '),
+                          postController.text.trim(),
+                          _image!.path,
+                          0,
+                          formattedDate);
+                      Navigator.pop(
+                          context,
+                          NewPost(
+                              formattedDate,
+                              _image!.path,
+                              titleController.text.replaceAll('\n', ' '),
+                              postController.text.trim()));
+                    }
                   },
                 ),
               ),
@@ -317,6 +325,28 @@ Widget _contentTile(TextEditingController postController) {
           ),
         ),
       ]);
+}
+
+Widget _buildPopupDialog(BuildContext context) {
+  return AlertDialog(
+    title: const Text('Sorry'),
+    content: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: const <Widget>[
+        Text("Image is required for posting"),
+      ],
+    ),
+    actions: <Widget>[
+      FlatButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        textColor: Theme.of(context).primaryColor,
+        child: const Text('Close'),
+      ),
+    ],
+  );
 }
 
 class NewPost {

@@ -127,7 +127,7 @@ class ProfileUpdateState extends State<ProfileUpdate> {
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.white),
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.pink),
+                          MaterialStateProperty.all<Color>(CompanyColors.red),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),

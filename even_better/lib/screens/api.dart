@@ -20,12 +20,12 @@ Future<http.Response> _createPost(title, description, url, likes, time) {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      "_id": "0000000000001",
+      // "_id": "0000000000001",
       "title": title,
       "description": description,
       "picture-uri": url,
       "likes": 0.toString(),
-      "__v": 0.toString(),
+      "poster": 0.toString(),
       "timestamp": time
     }),
   );

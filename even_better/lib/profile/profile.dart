@@ -8,6 +8,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileApp extends StatefulWidget {
+  const ProfileApp({Key? key}) : super(key: key);
+
   @override
   ProfileAppState createState() => ProfileAppState();
 }
@@ -35,18 +37,18 @@ class ProfileAppState extends State<ProfileApp> {
         builder: (BuildContext bc) {
           return SafeArea(
             child: Container(
-              child: new Wrap(
+              child: Wrap(
                 children: <Widget>[
-                  new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Photo Library'),
+                  ListTile(
+                      leading: const Icon(Icons.photo_library),
+                      title: const Text('Photo Library'),
                       onTap: () {
                         _imgFromGallery();
                         Navigator.of(context).pop();
                       }),
-                  new ListTile(
-                    leading: new Icon(Icons.photo_camera),
-                    title: new Text('Camera'),
+                  ListTile(
+                    leading: const Icon(Icons.photo_camera),
+                    title: const Text('Camera'),
                     onTap: () {
                       _imgFromCamera();
                       Navigator.of(context).pop();
@@ -82,7 +84,7 @@ class ProfileAppState extends State<ProfileApp> {
         actions: <Widget>[
           FlatButton.icon(
               icon: Icon(Icons.person),
-              label: Text(
+              label: const Text(
                 'logout',
                 style: TextStyle(
                   fontFamily: 'EB',
@@ -105,7 +107,7 @@ class ProfileAppState extends State<ProfileApp> {
                     gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: <Color>[Color(0xffee0000), Color(0xffeeee00)],
+                  colors: <Color>[Color(0xffFFDCDC), Color(0xFF6440FF)],
                 )),
                 child: Container(
                   width: double.infinity,
@@ -125,7 +127,7 @@ class ProfileAppState extends State<ProfileApp> {
                             },
                             child: CircleAvatar(
                               radius: 55,
-                              backgroundColor: Colors.red[300],
+                              backgroundColor: CompanyColors.red[30],
                               child: _image != null
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(50),
@@ -194,7 +196,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         "Posts",
                                         style: TextStyle(
                                           fontFamily: 'EB',
-                                          color: Colors.red[400],
+                                          color: CompanyColors.red[300],
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -207,7 +209,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         style: TextStyle(
                                           fontFamily: 'EB',
                                           fontSize: 18.0,
-                                          color: Colors.red[300],
+                                          color: CompanyColors.red[300],
                                         ),
                                       )
                                     ],
@@ -221,7 +223,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         "Followers",
                                         style: TextStyle(
                                           fontFamily: 'EB',
-                                          color: Colors.red[400],
+                                          color: CompanyColors.red[300],
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -234,7 +236,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         style: TextStyle(
                                           fontFamily: 'EB',
                                           fontSize: 18.0,
-                                          color: Colors.red[300],
+                                          color: CompanyColors.red[300],
                                         ),
                                       )
                                     ],
@@ -247,7 +249,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         "Follow",
                                         style: TextStyle(
                                           fontFamily: 'EB',
-                                          color: Colors.red[400],
+                                          color: CompanyColors.red[300],
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -260,7 +262,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         style: TextStyle(
                                           fontFamily: 'EB',
                                           fontSize: 18.0,
-                                          color: Colors.red[300],
+                                          color: CompanyColors.red[300],
                                         ),
                                       )
                                     ],
@@ -274,7 +276,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         "Company",
                                         style: TextStyle(
                                           fontFamily: 'EB',
-                                          color: Colors.red[400],
+                                          color: CompanyColors.red[300],
                                           fontSize: 20.0,
                                         ),
                                       ),
@@ -286,7 +288,7 @@ class ProfileAppState extends State<ProfileApp> {
                                         style: TextStyle(
                                           fontFamily: 'EB',
                                           fontSize: 18.0,
-                                          color: Colors.red[300],
+                                          color: CompanyColors.red[300],
                                         ),
                                       ),
                                     ],
@@ -312,7 +314,7 @@ class ProfileAppState extends State<ProfileApp> {
                       Text(
                         'Major(s): ',
                         style: TextStyle(
-                            color: Colors.redAccent,
+                            color: CompanyColors.red[300],
                             fontFamily: 'EBI',
                             fontSize: 20.0),
                       ),
@@ -330,7 +332,7 @@ class ProfileAppState extends State<ProfileApp> {
                       Text(
                         'Name: ',
                         style: TextStyle(
-                            color: Colors.redAccent,
+                            color: CompanyColors.red[300],
                             fontFamily: 'EBI',
                             fontSize: 20.0),
                       ),
@@ -348,7 +350,7 @@ class ProfileAppState extends State<ProfileApp> {
                       Text(
                         'Bio: ',
                         style: TextStyle(
-                            color: Colors.redAccent,
+                            color: CompanyColors.red[300],
                             fontFamily: 'EBI',
                             fontSize: 20.0),
                       ),
@@ -460,7 +462,7 @@ class ProfileAppState extends State<ProfileApp> {
               gradient: LinearGradient(
                   begin: Alignment.centerRight,
                   end: Alignment.centerLeft,
-                  colors: <Color>[Color(0xffee0000), Color(0xffeeee00)]),
+                  colors: <Color>[Color(0xff4F78FF), Color(0xffA8BCFE)]),
               borderRadius: BorderRadius.circular(30.0),
             ),
             child: Container(

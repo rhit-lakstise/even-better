@@ -116,13 +116,13 @@ class _FeedScreenState extends State<FeedScreen> {
                       height: 400.0,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25.0),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black45,
-                            offset: Offset(0, 5),
-                            blurRadius: 8.0,
-                          ),
-                        ],
+                        // boxShadow: const [
+                        //   BoxShadow(
+                        //     color: Colors.black45,
+                        //     offset: Offset(0, 5),
+                        //     blurRadius: 8.0,
+                        //   ),
+                        // ],
                         image: DecorationImage(
                           image: getPostImage(image),
                           fit: BoxFit.cover,
@@ -441,22 +441,6 @@ class _FeedScreenState extends State<FeedScreen> {
 }
 
 Widget _noaddNewPosts() {
-  return Container(
-    height: 250,
-    child: Center(
-      child: Text(
-        'Create your first Post! :)',
-        style: TextStyle(
-          fontFamily: 'Billabong',
-          fontSize: 30.0,
-          color: CompanyColors.red,
-        ),
-      ),
-    ),
-  );
-}
-
-Widget _noaddNewPost() {
   return Padding(
     padding: EdgeInsets.all(50.0),
     child: Container(
@@ -468,15 +452,47 @@ Widget _noaddNewPost() {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
       child: Center(
-        child: Text(
-          'Create your first Post! :)',
-          style: TextStyle(
-            fontFamily: 'Billabong',
-            fontSize: 30.0,
-            color: Colors.red,
+        child: Container(
+          margin: const EdgeInsets.all(10.0),
+          color: Colors.white,
+          width: 300.0,
+          height: 50.0,
+          child: const Center(
+            child: Text(
+              'Create your first Post! :)',
+              style: TextStyle(
+                fontFamily: 'Billabong',
+                fontSize: 30.0,
+                color: CompanyColors.red,
+              ),
+            ),
           ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget _noaddNewPost() {
+  return Container(
+    decoration: const BoxDecoration(color: Colors.white),
+    child: const Center(
+      child: Text(
+        'Hello World',
+        textDirection: TextDirection.ltr,
+        style: TextStyle(
+          fontSize: 32,
+          color: Colors.black87,
         ),
       ),
     ),
@@ -491,10 +507,12 @@ class CompanyColors {
   static const MaterialColor red = MaterialColor(
     _redColor,
     <int, Color>{
-      50: Color(0xFF330000),
-      100: Color(0xFF330000),
-      200: Color(0xFF330000),
-      300: Color(0xFF800000),
+      20: Color(0xFFFFD4D4),
+      30: Color(0xFFAABEFB),
+      50: Color(0xFFD50000),
+      100: Color(0xFFB30000),
+      200: Color(0xFFA30000),
+      300: Color(0xFF9B0000),
       400: Color(0xFF800000),
       500: Color(0xFF800000),
       600: Color(0xFFCC1414),
