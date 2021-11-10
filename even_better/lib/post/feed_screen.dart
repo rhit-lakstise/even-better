@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:even_better/Chat/select_user.dart';
 import 'package:even_better/forum/data.dart';
 import 'package:even_better/forum/forum.dart';
+import 'package:even_better/screens/api.dart';
 import 'package:even_better/screens/my_flutter_app_icons.dart';
 import 'package:meta/meta.dart';
 import 'package:even_better/profile/profile.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:even_better/models/post_model.dart';
 import 'package:even_better/post/addpost.dart';
 import 'package:even_better/post/view_post_screen.dart';
+import 'package:like_button/like_button.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -19,10 +21,10 @@ class FeedScreen extends StatefulWidget {
 
 class _FeedScreenState extends State<FeedScreen> {
   bool _hasBeenPressed = false;
-  final String username = 'Jamari Morrison';
   Widget p = _noaddNewPost();
-  List<Widget> ps = <Widget>[];
+  List<SinglePost> ps = <SinglePost>[];
   Widget l = _noaddNewPosts();
+  // List<Posting> now_ps = <Posting>[];
 
   Image getAvatorImage() {
     return Image(
@@ -38,16 +40,18 @@ class _FeedScreenState extends State<FeedScreen> {
     return FileImage(File(s));
   }
 
-  Widget _buildPost(String time, String image, String title, String content) {
+  Widget _buildPost(String time, String image, String title, String content,
+      String username, int likes, String pid) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       child: Container(
         width: double.infinity,
         // height: 800.0,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxHeight: double.infinity,
         ),
         decoration: BoxDecoration(
+          // color: Colors.white,
           color: Colors.white,
           borderRadius: BorderRadius.circular(25.0),
           boxShadow: [
@@ -139,17 +143,43 @@ class _FeedScreenState extends State<FeedScreen> {
                           children: <Widget>[
                             Row(
                               children: <Widget>[
-                                IconButton(
-                                  icon: const Icon(Icons.favorite_border),
-                                  iconSize: 30.0,
-                                  onPressed: () => print('Like post'),
-                                ),
-                                const Text(
-                                  '0',
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w600,
+                                // IconButton(
+                                //     icon: const Icon(Icons.favorite_border),
+                                //     iconSize: 30.0,
+                                //     onPressed: () {
+                                //       likes++;
+                                //     }
+
+                                //     // => print('Like post'),
+                                //     ),
+                                // Text(
+                                //   // serverposts[serverposts.length - 1].likes.toString(),
+                                //   likes.toString(),
+                                //   style: const TextStyle(
+                                //     fontSize: 14.0,
+                                //     fontWeight: FontWeight.w600,
+                                //   ),
+                                // ),
+                                LikeButton(
+                                  size: 30,
+                                  circleColor: CircleColor(
+                                      start: Color(0xff00ddff),
+                                      end: Color(0xff0099cc)),
+                                  bubblesColor: BubblesColor(
+                                    dotPrimaryColor: Color(0xff33b5e5),
+                                    dotSecondaryColor: Color(0xff0099cc),
                                   ),
+                                  likeBuilder: (bool isLiked) {
+                                    return Icon(
+                                      Icons.home,
+                                      color: isLiked
+                                          ? Colors.deepPurpleAccent
+                                          : Colors.grey,
+                                      size: 30,
+                                    );
+                                  },
+                                  likeCount: 0,
+                                  onTap: onLikeButtonTapped,
                                 ),
                               ],
                             ),
@@ -217,6 +247,16 @@ class _FeedScreenState extends State<FeedScreen> {
     );
   }
 
+  Future<bool> onLikeButtonTapped(bool isLiked) async {
+    /// send your request here
+    // final bool success= await sendRequest();
+
+    /// if failed, you can do nothing
+    // return success? !isLiked:isLiked;
+
+    return !isLiked;
+  }
+
   int _index = 0;
   @override
   Widget build(BuildContext context) {
@@ -282,10 +322,21 @@ class _FeedScreenState extends State<FeedScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ImageFromGalleryEx()));
+                  print('niemaaaaa1aaa');
+                  await GetRequest();
+
+                  print('niemaaaaa3a');
                   setState(() {
+                    print('niemaaaaaaaaaaaaaa');
+                    Posting latestpost = serverposts[serverposts.length - 1];
+                    String pid = latestpost.pid;
+                    int numlikes = latestpost.likes;
+                    // int l = serverposts.length - 1;
+                    // Posting p_more = serverposts[];
                     p = _buildPost(_post.timeAgo, _post.imageUrl, _post.title,
-                        _post.content);
-                    ps.add(p);
+                        _post.content, _post.username, 0, pid);
+                    SinglePost sp = SinglePost(pid, numlikes, p);
+                    ps.add(sp);
                     l = getPostWidgets();
                   });
                 },
@@ -386,7 +437,18 @@ class _FeedScreenState extends State<FeedScreen> {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             // physics: AlwaysScrollableScrollPhysics(),
-            children: ps.reversed.toList()));
+            children:
+
+                // ps.reversed.toList()
+                Displayingpost(ps).reversed.toList()));
+  }
+
+  List<Widget> Displayingpost(List<SinglePost> ls) {
+    List<Widget> toreturn = <Widget>[];
+    for (var i = 0; i < ls.length; i++) {
+      toreturn.add(ls[i].widget);
+    }
+    return toreturn;
   }
 
   Widget _contentWidget(String text, bool _flag) {
@@ -521,4 +583,11 @@ class CompanyColors {
       900: Color(0xFF96084F)
     },
   );
+}
+
+class SinglePost {
+  String pid;
+  int likes;
+  Widget widget;
+  SinglePost(this.pid, this.likes, this.widget);
 }

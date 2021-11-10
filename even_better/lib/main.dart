@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       initialData: null, //required
       child: MaterialApp(
+          debugShowCheckedModeBanner: true,
           title: MyApp.appTitle,
           theme: ThemeData(
             //TODO: make a custom color swatch with the rose color palette

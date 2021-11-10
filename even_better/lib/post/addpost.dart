@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:even_better/screens/api.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:even_better/screens/api.dart';
 
 class ImageFromGalleryEx extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController postController = TextEditingController();
   final picker = ImagePicker();
+  final username = "Jamari Morrison";
   File? _image;
 
   ImageFromGalleryExState();
@@ -231,15 +233,18 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
                           titleController.text.replaceAll('\n', ' '),
                           postController.text.trim(),
                           _image!.path,
-                          0,
-                          formattedDate);
+                          300,
+                          formattedDate,
+                          username);
+                    
                       Navigator.pop(
                           context,
                           NewPost(
                               formattedDate,
                               _image!.path,
                               titleController.text.replaceAll('\n', ' '),
-                              postController.text.trim()));
+                              postController.text.trim(),
+                              username));
                     }
                   },
                 ),
@@ -354,6 +359,7 @@ class NewPost {
   String imageUrl;
   String title;
   String content;
+  String username;
 
-  NewPost(this.timeAgo, this.imageUrl, this.title, this.content);
+  NewPost(this.timeAgo, this.imageUrl, this.title, this.content, this.username);
 }
