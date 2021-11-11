@@ -7,16 +7,24 @@ const PostSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        "first-name": {
+        "name": {
             type: String,
             required: true,
         },
-        "last-name": {
+        "status": {
             type: String,
             required: true,
-        }
+        },
+        "major": {
+            type: String,
+            required: true,
+        },
+        "year": {
+            type: String,
+            required: true,
+        },
+        
 
-        //No need to have an email field because it's just rose-usernmae@rose-hulman.edu
     })
 
 module.exports = mongoose.model('StudentModel', PostSchema)
