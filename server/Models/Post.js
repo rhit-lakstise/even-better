@@ -11,7 +11,7 @@ const PostSchema = mongoose.Schema(
         "picture-uri": String,
         "likes": Number,
         "poster": String,
-        "timestamp": Number
+        "timestamp": String
     })
 
 module.exports = mongoose.model('PostModel', PostSchema)

@@ -32,7 +32,7 @@ router.post('/create', (req, res) => {
         "likes": req.body.likes || 0,
         "commenter": req.body.commenter,
         "timestamp": req.body.timestamp,
-        "parent-id": req.body.['parent-id']
+        "parent-id": req.body['parent-id']
     });
 
     post.save()

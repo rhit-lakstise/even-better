@@ -11,4 +11,4 @@ const CommentSchema = mongoose.Schema(
         
     })
 
-module.exports = mongoose.model('ForumModel', ForumSchema)
+module.exports = mongoose.model('CommentModel', CommentSchema)

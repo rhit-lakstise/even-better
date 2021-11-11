@@ -4,7 +4,6 @@ const router = express.Router();
 
 router.get('/all', async (req, res) => {
     try{
-        res.write("success!");
         console.log('made it to all')
         const posts = await Post.find();
 
