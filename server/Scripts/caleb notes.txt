@@ -1,0 +1,35 @@
+caleb
+	-vision for pongo? wyd @ msft? wsft -> pongo how is it?
+	-any non-standard dev practices? any built test cases i should follow the style for? (dont see any) YEP
+	-should i go ahead and write tests for everything? i think after i get one it'll be easy to do the rest 
+	-what is built? - figma lmao
+	-what should i build first? - figma lmao
+	-test coverage = auto regression tests + material ui coverage (test what classes are present based on params) YEP 
+	-critical findings in npm YEP
+
+
+
+in apps they have vr test, that's where chromatic is
+
+
+
+test cases:
+params
+
+-make sure things are as modular as possible
+
+-don't test icon
+
+to test: textfield (select is still WIP), button, checkbox, rating (still in WIP)
+build out more of the design before 
+
+
+
+
+
+
+dashboard to view insights, mod how data is collected, set up emails
+
+findings:
+select's default value is '' but it still displays a value (so maybe have standard of having the default be "Select..."?)
+select doesn't respect defaultvalue prop
