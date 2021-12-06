@@ -95,12 +95,12 @@ class _DirectMessageState extends State<DirectMessage> {
       text: message.text,
     );
 
-    // socket.emit('fromClient', {
-    //   'sender': widget.currentStudent,
-    //   'recipient': widget.recipient,
-    //   'text': message.text,
-    //   'timestamp': textMessage.createdAt
-    // });
+    socket.emit('fromClient', {
+      'sender': widget.currentStudent,
+      'recipient': widget.recipient,
+      'text': message.text,
+      'timestamp': textMessage.createdAt
+    });
 
     _addMessage(textMessage);
   }
@@ -146,12 +146,6 @@ class _DirectMessageState extends State<DirectMessage> {
   void initState() {
     super.initState();
     getMessageHistory();
-
-    // Socket socket = io('http://10.0.2.2:3000', <String, dynamic>{
-    //   'transports': ['websocket'],
-    //   'autoConnect': false,
-    // });
-    //
     socket.connect();
     print('START');
 
