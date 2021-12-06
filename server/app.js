@@ -68,8 +68,10 @@ const studentRoute = require('./Routes/students');
 const rosefireRoute = require('./Routes/rosefire');
 const commentsRoute = require('./Routes/comments');
 const forumsRoute = require('./Routes/forums');
+const messagesRoute = require('./Routes/messages')
 
 
+app.use('/messages', messagesRoute);
 
 app.use('/users', userRoute);
 app.use('/posts', postRoute);
