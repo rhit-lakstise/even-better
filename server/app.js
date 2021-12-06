@@ -25,6 +25,9 @@ const io = new Server(server);
 
 let connections = {};
 
+
+
+
 io.on('connection', (socket) => {
     console.log('a user connected');
 
@@ -59,7 +62,7 @@ io.on('connection', (socket) => {
 
         io.to(connections[msg['sender']]).emit('fromServer', 'You said '+JSON.stringify(msg['text']));
       });
-  });
+ });   
 
 
 const userRoute = require('./Routes/users');
@@ -80,9 +83,12 @@ app.use('/rosefire', rosefireRoute);
 app.use('/comments', commentsRoute);
 app.use('/forums', forumsRoute);
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+  });
 
 
 mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () => console.log('Connected'));
 
 
-app.listen(3000);
+server.listen(3000, () => {console.log('listening in 3000')});
