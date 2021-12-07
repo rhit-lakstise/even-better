@@ -3,7 +3,7 @@ import 'package:even_better/models/user.dart';
 
 class AuthService {
   // instance of firebase authentication, use _auth to interact with firebase
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final FirebaseAuth _auth = FirebaseAuth.instance;
   // create user obj based on FirebaseUser, (return type was MyUser but can't accept null returns)
   MyUser? _userFromFirebase(User? user) {
     // !!!! The operand can't be null, so the condition is always true.
@@ -50,6 +50,19 @@ class AuthService {
       return _userFromFirebase(user);
     } catch (e) {
       print(e.toString());
+      return null;
+    }
+  }
+
+  Future deleteAccount() async {
+    try {
+      return FirebaseAuth.instance.currentUser!.delete();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        //might need to reauthenticate here
+        print(
+            'The user must reauthenticate before this operation can be executed.');
+      }
       return null;
     }
   }

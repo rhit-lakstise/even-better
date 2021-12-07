@@ -2,6 +2,7 @@ import 'package:even_better/fb_services/auth.dart';
 import 'package:even_better/post/addpost.dart';
 import 'package:even_better/post/feed_screen.dart';
 import 'package:even_better/profile/profile_change.dart';
+import 'package:even_better/profile/settings.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 
@@ -94,6 +95,13 @@ class ProfileAppState extends State<ProfileApp> {
               ),
               onPressed: () async {
                 await _auth.signOut();
+              }),
+          FlatButton.icon(
+              label: const Text(''),
+              icon: Icon(Icons.settings),
+              onPressed: () async {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Settings()));
               })
         ],
       ),
