@@ -6,17 +6,17 @@ import 'dart:convert';
 //https://stackoverflow.com/questions/49914136/how-to-integrate-flutter-app-with-node-js
 //https://medium.com/flutter/some-options-for-deserializing-json-with-flutter-7481325a4450
 
-// ----------------------------------------------------------------
-// create post
 const String serverURL =
     "http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000";
 
+// ----------------------------------------------------------------
+// create post
 void createForum(title, poster, content, time, tags) {
-  _createPost(title, poster, content, time, tags);
+  _createForum(title, poster, content, time, tags);
   print("creating forum [connect]");
 }
 
-Future<http.Response> _createPost(title, poster, content, time, tags) {
+Future<http.Response> _createForum(title, poster, content, time, tags) {
   return http.post(
     Uri.parse(serverURL + "/forums/create"),
     headers: <String, String>{
@@ -31,4 +31,42 @@ Future<http.Response> _createPost(title, poster, content, time, tags) {
     }),
   );
 }
+
 //----------------------------------------------------------------
+// get all forums
+void allForum() {
+  _allForum();
+  print("getting all forum [connect]");
+}
+
+Future<http.Response> _allForum() {
+  return http.get(
+    Uri.parse(serverURL + "/forums/all"),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
+}
+
+// ----------------------------------------------------------------
+// create tag
+void createTag(title, poster, content, time, tags) {
+  _createTag(title, poster, content, time, tags);
+  print("creating forum [connect]");
+}
+
+Future<http.Response> _createTag(title, poster, content, time, tags) {
+  return http.post(
+    Uri.parse(serverURL + "/forums/create"),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      "title": title,
+      "poster": poster,
+      "content": content,
+      "timestamp": time,
+      "tags": tags,
+    }),
+  );
+}

@@ -171,9 +171,9 @@ class _FeedScreenState extends State<FeedScreen> {
                                   ),
                                   likeBuilder: (bool isLiked) {
                                     return Icon(
-                                      Icons.home,
+                                      Icons.favorite,
                                       color: isLiked
-                                          ? Colors.deepPurpleAccent
+                                          ? Colors.pinkAccent
                                           : Colors.grey,
                                       size: 30,
                                     );
