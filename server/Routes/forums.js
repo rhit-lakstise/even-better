@@ -37,7 +37,7 @@ router.post('/create', (req, res) => {
         "tags": req.body.tags
     });
 
-    post.save()
+    forum.save()
     .then(data => {
         res.json(data);
     })
