@@ -46,7 +46,7 @@ class Settings extends StatelessWidget {
                 // set up the AlertDialog
                 AlertDialog alert = AlertDialog(
                   title: Text("Are you sure?"),
-                  content: Text("Account deletion is permanent"),
+                  content: Text("Account Deletion is Permanent"),
                   actions: [
                     cancelButton,
                     continueButton,
