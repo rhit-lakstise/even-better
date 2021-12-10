@@ -18,7 +18,7 @@ router.post('/signup', (req, res) => {
     console.log(req.body)
     const user = new User({
         "username": req.body.username,
-        "rose-username": req.body['rose-username']
+        "rose-username": req.body['rose-username'],
     });
 
     user.save()

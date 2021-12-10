@@ -1,17 +1,18 @@
-import 'package:even_better/main.dart';
 import 'package:flutter/material.dart';
 
 import '../fb_services/auth.dart';
-import 'deletion_dialog.dart';
+import './helpers/settings_rest_api.dart';
 
 class Settings extends StatelessWidget {
-  final AuthService _auth = AuthService();
+  final AuthService auth;
+
+  const Settings(this.auth, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(MyApp.appTitle,
+        title: const Text("Settings",
             style: TextStyle(
               fontFamily: 'Billabong',
               fontSize: 35.0,
@@ -33,8 +34,10 @@ class Settings extends StatelessWidget {
                 Widget continueButton = TextButton(
                   child: Text("DELETE"),
                   onPressed: () {
-                    _auth.deleteAccount();
-                    _auth.signOut();
+                    //do the deletions!
+                    // createAlbumDeleteAccount(auth.user);
+                    auth.deleteAccount();
+                    auth.signOut();
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
                   },

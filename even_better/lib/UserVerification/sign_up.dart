@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import './Helpers/labeled_text_field.dart';
-import './Helpers/firebase.dart';
+import 'Helpers/account_creation.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({
@@ -93,8 +93,11 @@ class _SignUpState extends State<SignUp> {
                 child: ElevatedButton(
                     onPressed: isValidToSignUp()
                         ? () {
-                            requestSignUpEB(usernameController.text,
-                                passwordController.text, context);
+                            requestSignUpEB(
+                                usernameController.text,
+                                widget.roseUsername,
+                                passwordController.text,
+                                context);
                             //save the rose email here!!
                           }
                         : null,

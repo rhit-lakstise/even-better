@@ -71,23 +71,26 @@ Future<Album> createAlbumValidateOtp(code) async {
     throw Exception('failed to create album');
   }
 }
-// void loginEB(username, password) {
-//   //verify account with our FireBase
-//   //if can be updated on node server, then this can stay the same
-//   _createAlbumLoginEB(username, password);
-//   print("Even better username: ${username}");
-// }
 
-// Future<http.Response> _createAlbumLoginEB(username, password) {
-//   return http.post(
-//     Uri.parse(
-//         'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
-//     headers: <String, String>{
-//       'Content-Type': 'application/json; charset=UTF-8',
-//     },
-//     body: jsonEncode(<String, String>{
-//       'username': username,
-//       'password': password,
-//     }),
-//   );
-// }
+Future<Album> createAlbumSignUpEB(username, roseUsername) async {
+  final response = await http.post(
+    Uri.parse(
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'username': username,
+      'rose-username': roseUsername,
+    }),
+  );
+  //NEED TO HANDLE THIS ALBUM BETTER
+  if (response.statusCode == 200 || response.statusCode == 201) {
+    Album output = Album.fromJson(jsonDecode(response.body));
+    print("message is: " + output.message);
+    return output;
+  } else {
+    print("status code: " + response.statusCode.toString());
+    throw Exception('failed to create album');
+  }
+}

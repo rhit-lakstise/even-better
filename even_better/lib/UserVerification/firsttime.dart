@@ -1,11 +1,11 @@
 import 'package:even_better/UserVerification/validate_rose.dart';
 import 'package:flutter/material.dart';
 
-import './Helpers/firebase.dart';
+import 'Helpers/account_creation.dart';
 import 'login.dart';
 import '../main.dart';
 import 'sign_up.dart';
-import './Helpers/rest_api.dart';
+import 'Helpers/verification_rest_api.dart';
 
 class FirstTime extends StatefulWidget {
   const FirstTime({Key? key}) : super(key: key);

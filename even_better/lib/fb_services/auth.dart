@@ -3,7 +3,7 @@ import 'package:even_better/models/user.dart';
 
 class AuthService {
   // instance of firebase authentication, use _auth to interact with firebase
-  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   // create user obj based on FirebaseUser, (return type was MyUser but can't accept null returns)
   MyUser? _userFromFirebase(User? user) {
     // !!!! The operand can't be null, so the condition is always true.
@@ -22,6 +22,11 @@ class AuthService {
   //  whenever a state change occure,
   //  returns: User object when signs in,
   //           null when signs out.
+
+  get currentUser {
+    return _auth.currentUser;
+  }
+
   Stream<MyUser?> get user {
     return _auth
         .authStateChanges()

@@ -1,4 +1,4 @@
-import 'package:even_better/UserVerification/Helpers/rest_api.dart';
+import 'package:even_better/UserVerification/Helpers/verification_rest_api.dart';
 import 'package:test/test.dart';
 import 'dart:core';
 import '../lib/UserVerification/Helpers/labeled_text_field.dart';

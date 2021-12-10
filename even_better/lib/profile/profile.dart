@@ -101,7 +101,7 @@ class ProfileAppState extends State<ProfileApp> {
               icon: Icon(Icons.settings),
               onPressed: () async {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Settings()));
+                    MaterialPageRoute(builder: (context) => Settings(_auth)));
               })
         ],
       ),
