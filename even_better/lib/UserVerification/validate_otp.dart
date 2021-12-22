@@ -18,7 +18,7 @@ class ValidateOtp extends StatefulWidget {
 class _ValidateOtpState extends State<ValidateOtp> {
   final TextEditingController codeController = TextEditingController();
   var validOtp = true;
-  late Future<Album> futureAlbum;
+  late Future<AlbumValidateRose> futureAlbum;
   void _verifyOtp(code) {
     //verify account with RoseFire
     // futureAlbum = createAlbumValidateOtp(code);
@@ -26,6 +26,7 @@ class _ValidateOtpState extends State<ValidateOtp> {
     //worth to check if == "false" ?
     validOtp = true;
     //album.message == "true";
+    print("rose username in widge: " + widget.roseUsername);
     if (validOtp) {
       Navigator.push(
           context,

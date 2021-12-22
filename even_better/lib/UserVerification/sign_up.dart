@@ -18,7 +18,6 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool isValidToSignUp() {
-    print("isValidToSignUp()");
     return verifyPasswords() && listRequirements(passwordController.text) == "";
   }
 

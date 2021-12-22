@@ -18,14 +18,19 @@ class ValidateRose extends StatefulWidget {
 class _ValidateRoseState extends State<ValidateRose> {
   final TextEditingController usernameController = TextEditingController();
   var validEmail = true;
-  late Future<Album> futureAlbum;
+  late Future<AlbumValidateRose> futureAlbum;
 
   void _registerRose(username) {
-    //verify account with RoseFire
+    //verify account with .csv webscraped file
     futureAlbum = createAlbumValidateRose(username);
     futureAlbum.then((album) => setState(() {
           //worth to check if == "false" ?
-          validEmail = album.message == "true";
+
+          // validEmail = album.message == "true";
+          //TODO: COMMENT LINE BELOW AND UNCOMMENT LINE ABOVE
+          //Currunt config is for testing with a rose username multiple times
+          validEmail = true;
+
           if (validEmail) {
             Navigator.push(
                 context,

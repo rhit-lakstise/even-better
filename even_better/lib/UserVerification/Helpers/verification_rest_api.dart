@@ -4,16 +4,16 @@ import 'dart:convert';
 //documentation: https://flutter.dev/docs/cookbook/networking/send-data
 //if we need to work with responses, add stuff from here ^
 
-class Album {
+class AlbumValidateRose {
   final String message;
 
-  Album({
+  AlbumValidateRose({
     required this.message,
   });
 
-  factory Album.fromJson(Map<String, dynamic> json) {
+  factory AlbumValidateRose.fromJson(Map<String, dynamic> json) {
     // print(json['message']);
-    return Album(
+    return AlbumValidateRose(
       //for whatever reason dynamic makes this parse directly to a boolean :(
       message: json['message'] ? "true" : "false",
     );
@@ -33,7 +33,7 @@ class Album {
 // }
 
 //make this private but still usable in test case??
-Future<Album> createAlbumValidateRose(roseUsername) async {
+Future<AlbumValidateRose> createAlbumValidateRose(roseUsername) async {
   final response = await http.post(
     Uri.parse(
         'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/checkExist'),
@@ -43,7 +43,8 @@ Future<Album> createAlbumValidateRose(roseUsername) async {
     body: jsonEncode(<String, String>{'rose-username': roseUsername}),
   );
   if (response.statusCode == 200 || response.statusCode == 201) {
-    Album output = Album.fromJson(jsonDecode(response.body));
+    AlbumValidateRose output =
+        AlbumValidateRose.fromJson(jsonDecode(response.body));
     print("message is: " + output.message);
     return output;
   } else {
@@ -53,7 +54,7 @@ Future<Album> createAlbumValidateRose(roseUsername) async {
 }
 
 //TODO: implement me!!
-Future<Album> createAlbumValidateOtp(code) async {
+Future<AlbumValidateRose> createAlbumValidateOtp(code) async {
   final response = await http.post(
     Uri.parse(
         'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/validatecode'),
@@ -63,7 +64,8 @@ Future<Album> createAlbumValidateOtp(code) async {
     body: jsonEncode(<String, String>{'code': code}),
   );
   if (response.statusCode == 200 || response.statusCode == 201) {
-    Album output = Album.fromJson(jsonDecode(response.body));
+    AlbumValidateRose output =
+        AlbumValidateRose.fromJson(jsonDecode(response.body));
     print("message is: " + output.message);
     return output;
   } else {
@@ -72,7 +74,22 @@ Future<Album> createAlbumValidateOtp(code) async {
   }
 }
 
-Future<Album> createAlbumSignUpEB(username, roseUsername) async {
+class AlbumSignUp {
+  final String message;
+
+  AlbumSignUp({
+    required this.message,
+  });
+
+  factory AlbumSignUp.fromJson(Map<String, dynamic> json) {
+    // print(json['message']);
+    return AlbumSignUp(
+        //for whatever reason dynamic makes this parse directly to a boolean :(
+        message: json['username']);
+  }
+}
+
+Future<AlbumSignUp> createAlbumSignUpEB(username, roseUsername) async {
   final response = await http.post(
     Uri.parse(
         'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
@@ -86,7 +103,11 @@ Future<Album> createAlbumSignUpEB(username, roseUsername) async {
   );
   //NEED TO HANDLE THIS ALBUM BETTER
   if (response.statusCode == 200 || response.statusCode == 201) {
-    Album output = Album.fromJson(jsonDecode(response.body));
+    print("body: " + jsonDecode(response.body).toString());
+
+    print(jsonDecode(response.body));
+
+    AlbumSignUp output = AlbumSignUp.fromJson(jsonDecode(response.body));
     print("message is: " + output.message);
     return output;
   } else {

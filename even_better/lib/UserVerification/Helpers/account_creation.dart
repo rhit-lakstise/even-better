@@ -1,3 +1,4 @@
+import 'package:even_better/fb_services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -22,9 +23,7 @@ void modalErrorHandler(error, context, title) {
   AlertDialog alert = AlertDialog(
     title: Text(title),
     content: Text(error.toString().split("] ")[1]),
-    actions: [
-      cancelButton,
-    ],
+    actions: [cancelButton],
   );
 
   // show the dialog
@@ -51,18 +50,24 @@ void requestLoginEB(String username, String password, context) async {
 }
 
 void requestSignUpEB(
-    String username, String password, String roseUsername, context) async {
+    String username, String roseUsername, String password, context) async {
   //verify account with our FireBase
+  AuthService fbAuth = AuthService();
 
   _auth
       .createUserWithEmailAndPassword(email: username, password: password)
       .then((val) {
     if (val.user?.email == username) {
-      //TODO make this work when the node server is fixed
+      createAlbumSignUpEB(username, roseUsername)
+          .then((value) => {print(value)})
+          .catchError((error) {
+        //delete the the account that fb created since we can't connect to the
+        //database to finish creating the account
+        //if this then fails, there's no saving us.
+        fbAuth.deleteAccount();
 
-      // createAlbumSignUpEB(username, roseUsername).then((value) =>
-
-      // );
+        modalErrorHandler(error, context, "Database connection error");
+      });
       //pop to the homescreen
       Navigator.pop(context);
       Navigator.pop(context);

@@ -36,6 +36,7 @@ class Settings extends StatelessWidget {
                   onPressed: () {
                     //do the deletions!
                     // createAlbumDeleteAccount(auth.user);
+                    //TODO: Error handling here
                     auth.deleteAccount();
                     auth.signOut();
                     Navigator.of(context).pop();
