@@ -10,6 +10,7 @@ const UserSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        "verification-token": String,
         "pfp-uri": String,
         "bio": String,
         "friends": [String],

@@ -82,7 +82,7 @@ Future<AlbumValidateRose> createAlbumSendEmail(email) async {
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{'email': email}),
+    body: jsonEncode(<String, String>{'rose-username': email}),
   );
   if (response.statusCode == 200 || response.statusCode == 201) {
     AlbumValidateRose output =
