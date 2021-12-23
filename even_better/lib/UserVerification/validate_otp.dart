@@ -1,3 +1,4 @@
+import 'package:even_better/UserVerification/Helpers/account_creation.dart';
 import 'package:even_better/UserVerification/sign_up.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class ValidateOtp extends StatefulWidget {
     Key? key,
   }) : super(key: key);
   final String roseUsername;
+
   @override
   State<ValidateOtp> createState() => _ValidateOtpState();
 }
@@ -19,7 +21,26 @@ class _ValidateOtpState extends State<ValidateOtp> {
   final TextEditingController codeController = TextEditingController();
   var validOtp = true;
   late Future<AlbumValidateRose> futureAlbum;
-  void _verifyOtp(code) {
+  void emailNotValidated() {}
+
+  void checkEmailValidated() {
+    createAlbumIsEmailValidated(widget.roseUsername).then((value) {
+      print(value);
+      // if (notVerified) {
+      // modalErrorHandler(value, context, "not verified :(");
+      // }
+      //  if (isVerified) {
+      //     Navigator.push(
+      //         context,
+      //         MaterialPageRoute(
+      //             builder: (context) => SignUp(
+      //                   roseUsername: widget.roseUsername,
+      //                 )));
+      //   }
+    }).catchError((error) {
+      emailNotValidated();
+    });
+
     //verify account with RoseFire
     // futureAlbum = createAlbumValidateOtp(code);
     // futureAlbum.then((album) => setState(() {
@@ -27,14 +48,7 @@ class _ValidateOtpState extends State<ValidateOtp> {
     validOtp = true;
     //album.message == "true";
     print("rose username in widge: " + widget.roseUsername);
-    if (validOtp) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => SignUp(
-                    roseUsername: widget.roseUsername,
-                  )));
-    }
+
     // }));
 
 //for testing
@@ -51,21 +65,17 @@ class _ValidateOtpState extends State<ValidateOtp> {
         child: ListView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            LabeledTextField(
-              label: "Enter code from email address",
-              textEditingController: codeController,
-              isPassword: false,
-              isSignUpPassword: false,
-              onSubmit: (String val) {},
+            Text(
+              "A confirmation link has been sent to your email.\nClick it to continue",
             ),
             Container(
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
                     onPressed: () {
                       //validate OTP!!
-                      _verifyOtp(codeController.text);
+                      checkEmailValidated();
                     },
-                    child: const Text("Continue"))),
+                    child: const Text("Confirm Email Validation"))),
             validOtp
                 ? Text("")
                 //must be error

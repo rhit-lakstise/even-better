@@ -54,14 +54,35 @@ Future<AlbumValidateRose> createAlbumValidateRose(roseUsername) async {
 }
 
 //TODO: implement me!!
-Future<AlbumValidateRose> createAlbumValidateOtp(code) async {
-  final response = await http.post(
+Future<AlbumValidateRose> createAlbumIsEmailValidated(email) async {
+  final response = await http.get(
+    //query parameters!
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/validatecode'),
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/emailValidated?email=' +
+            email),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{'code': code}),
+  );
+  if (response.statusCode == 200 || response.statusCode == 201) {
+    AlbumValidateRose output =
+        AlbumValidateRose.fromJson(jsonDecode(response.body));
+    print("message is: " + output.message);
+    return output;
+  } else {
+    print("status code: " + response.statusCode.toString());
+    throw Exception('failed to create album');
+  }
+}
+
+Future<AlbumValidateRose> createAlbumSendEmail(email) async {
+  final response = await http.post(
+    Uri.parse(
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/sendValidationEmail'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{'email': email}),
   );
   if (response.statusCode == 200 || response.statusCode == 201) {
     AlbumValidateRose output =
