@@ -19,10 +19,20 @@ void modalErrorHandler(error, context, title) {
     },
   );
 
+  var errorMessage = error.toString();
+  //for parsing the firebase error responses.. probably want to do these on our own eventually
+  if (errorMessage.contains("] ")) {
+    errorMessage = errorMessage.split("] ")[1];
+  }
+  // var errorMessage = error.toString().contains("] ")
+  //     ? error.toString()
+  //     : error.toString().split("] ")[1];
+
+  print("message! : " + errorMessage);
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text(title),
-    content: Text(error.toString().split("] ")[1]),
+    content: Text(errorMessage),
     actions: [cancelButton],
   );
 

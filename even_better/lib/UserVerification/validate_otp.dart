@@ -3,7 +3,6 @@ import 'package:even_better/UserVerification/sign_up.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
-import 'Helpers/labeled_text_field.dart';
 import 'Helpers/verification_rest_api.dart';
 
 class ValidateOtp extends StatefulWidget {
@@ -20,25 +19,26 @@ class ValidateOtp extends StatefulWidget {
 class _ValidateOtpState extends State<ValidateOtp> {
   final TextEditingController codeController = TextEditingController();
   var validOtp = true;
-  late Future<AlbumValidateRose> futureAlbum;
-  void emailNotValidated() {}
+  late Future<AlbumBool> futureAlbum;
 
   void checkEmailValidated() {
-    createAlbumIsEmailValidated(widget.roseUsername).then((value) {
-      print(value);
-      // if (notVerified) {
-      // modalErrorHandler(value, context, "not verified :(");
-      // }
-      //  if (isVerified) {
-      //     Navigator.push(
-      //         context,
-      //         MaterialPageRoute(
-      //             builder: (context) => SignUp(
-      //                   roseUsername: widget.roseUsername,
-      //                 )));
-      //   }
+    print("Checking email validate");
+    createAlbumIsEmailValidated(widget.roseUsername).then((isVerifiedAlbum) {
+      var isVerified = isVerifiedAlbum.message;
+      print(isVerified);
+      if (!isVerified) {
+        modalErrorHandler("User is not verified", context, "not verified :(");
+      } else {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SignUp(
+                      roseUsername: widget.roseUsername,
+                    )));
+      }
+      ;
     }).catchError((error) {
-      emailNotValidated();
+      modalErrorHandler(error, context, "database conenction error");
     });
 
     //verify account with RoseFire
@@ -47,7 +47,6 @@ class _ValidateOtpState extends State<ValidateOtp> {
     //worth to check if == "false" ?
     validOtp = true;
     //album.message == "true";
-    print("rose username in widge: " + widget.roseUsername);
 
     // }));
 
@@ -71,21 +70,8 @@ class _ValidateOtpState extends State<ValidateOtp> {
             Container(
                 margin: const EdgeInsets.only(top: 40),
                 child: ElevatedButton(
-                    onPressed: () {
-                      //validate OTP!!
-                      checkEmailValidated();
-                    },
+                    onPressed: checkEmailValidated,
                     child: const Text("Confirm Email Validation"))),
-            validOtp
-                ? Text("")
-                //must be error
-                : Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    child: const Text("Invalid code",
-                        style: TextStyle(
-                          color: Colors.red,
-                        )),
-                  ),
           ],
         ),
       ),

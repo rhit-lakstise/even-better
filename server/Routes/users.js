@@ -141,10 +141,28 @@ router.get('/validateEmail/:token', async (req, res) => {
 
 
   }
+})
+router.get('/emailValidated/:username', async (req, res) => {
+
+  console.log(req.params.token);
+
+  var user = await User.findOne({
+    "rose-username": req.params.username,
+    "verified": true
+  }, );
+
+  if (user){
+  res.json({
+    message: true
+  });
+} else {
+  res.json({
+    message: false
+  });
 
 
+}
 
 
 })
-
 module.exports = router;

@@ -18,26 +18,28 @@ class ValidateRose extends StatefulWidget {
 class _ValidateRoseState extends State<ValidateRose> {
   final TextEditingController usernameController = TextEditingController();
   var validEmail = true;
-  late Future<AlbumValidateRose> futureAlbum;
+  late Future<AlbumSendEmail> futureAlbum;
 
   void _registerRose(username) {
     //verify account with .csv webscraped file
-    futureAlbum = createAlbumValidateRose(username);
-    futureAlbum.then((album) => setState(() {
-          //worth to check if == "false" ?
+    futureAlbum = createAlbumSendEmail(username);
+    futureAlbum.then((album) {
+      //worth to check if == "false" ?
 
-          // validEmail = album.message == "true";
-          //TODO: COMMENT LINE BELOW AND UNCOMMENT LINE ABOVE
-          //Currunt config is for testing with a rose username multiple times
-          validEmail = true;
+      print(album.message);
 
-          if (validEmail) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ValidateOtp(roseUsername: username)));
-          }
-        }));
+      // validEmail = album.message == "true";
+      //TODO: COMMENT LINE BELOW AND UNCOMMENT LINE ABOVE
+      //Currunt config is for testing with a rose username multiple times
+      validEmail = true;
+
+      if (validEmail) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ValidateOtp(roseUsername: username)));
+      }
+    });
 
 //for testing
   }
