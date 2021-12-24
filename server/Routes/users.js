@@ -60,6 +60,7 @@ router.post('/sendValidationEmail', async (req, res) => {
   let testAccount = await nodemailer.createTestAccount();
 
   var transporter = nodemailer.createTransport({
+    //TODO: get a temporary gmail account, don't use personal one
     service: 'gmail',
     auth: {
       user: 'seth@lakstins.net',
@@ -72,24 +73,28 @@ router.post('/sendValidationEmail', async (req, res) => {
     string: true,
     strong: false,
     retry: true
-  },async (err, key) => {
-    console.log(err, key);
+  }, async (err, key) => {
 
-    //TODO: upload the code to the database for the user ...
+    // upload the code to the database for the user ...
 
-    var toUpdate = await User.find({"rose-username": req.body['rose-username']});
-    toUpdate[0]['verification-token'] = key;
-    const result = await User.updateOne({"_id": toUpdate[0]['_id']}, toUpdate[0]);
-    console.log(toUpdate);
-    
+    var toUpdate = await User.updateOne({
+      "rose-username": req.body['rose-username']
+    }, {
+      'verification-token': key,
+      'verified': false
+    });
+
     if (err) {
-
+      res.json({
+        message: error
+      });
     } else {
       var mailOptions = {
         from: 'Kaori Miyazono',
         to: req.body['rose-username'] + '@rose-hulman.edu',
         subject: "Verify Your Even Better Account",
-        html: "<p><a href='https://youtube.com'>click here to verify email</a></p>"
+        //TODO: change to be the actual server and not local host
+        html: `<p><a href='http://localhost:3000/users/validateEmail/${key}'>click here to verify email</a></p>`
       };
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -99,14 +104,46 @@ router.post('/sendValidationEmail', async (req, res) => {
           });
         } else {
           console.log('Email sent: ' + info.response);
+          res.json({
+            message: 'Successfully sent user verification link!'
+          });
         }
       });
 
     }
   });
-  res.json({
-    message: 'Successfully sent user verification link!'
+
+
+})
+
+
+router.get('/validateEmail/:token', async (req, res) => {
+
+  console.log(req.params.token);
+
+  var updateStats = await User.updateOne({
+    "verification-token": req.params.token
+  }, {
+    verified: true,
+    $unset: {
+      "verification-token": null
+    }
   });
+  if (updateStats.modifiedCount == 1) {
+    res.json({
+      message: 'Successfully verified user'
+    });
+
+  } else {
+    res.json({
+      message: 'no user to verify for the given token'
+    });
+
+
+  }
+
+
+
 
 })
 
