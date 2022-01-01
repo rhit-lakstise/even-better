@@ -63,8 +63,9 @@ router.post('/sendValidationEmail', async (req, res) => {
     //TODO: get a temporary gmail account, don't use personal one
     service: 'gmail',
     auth: {
-      user: 'seth@lakstins.net',
-      pass: 'sotmtwwgrmI8'
+      //made a fake gmail account for this. replace it later probably
+      user: 'rosebot94@gmail.com',
+      pass: 'Password1?'
     }
   });
 
@@ -76,6 +77,7 @@ router.post('/sendValidationEmail', async (req, res) => {
   }, async (err, key) => {
 
     // upload the code to the database for the user ...
+    //could check to see if the key is already in use. Extremely unlikely to generate the same one twice though
 
     var toUpdate = await User.updateOne({
       "rose-username": req.body['rose-username']
@@ -90,11 +92,11 @@ router.post('/sendValidationEmail', async (req, res) => {
       });
     } else {
       var mailOptions = {
-        from: 'Kaori Miyazono',
+        from: 'rosebot94',
         to: req.body['rose-username'] + '@rose-hulman.edu',
         subject: "Verify Your Even Better Account",
         //TODO: change to be the actual server and not local host
-        html: `<p><a href='http://localhost:3000/users/validateEmail/${key}'>click here to verify email</a></p>`
+        html: `<p><a href='http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/validateEmail/${key}'>click here to verify email</a></p>`
       };
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {

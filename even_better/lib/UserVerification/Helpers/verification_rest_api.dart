@@ -42,7 +42,9 @@ Future<AlbumBool> createAlbumValidateRose(roseUsername) async {
 Future<AlbumBool> createAlbumIsEmailValidated(email) async {
   final response = await http.get(
     //query parameters!
-    Uri.parse('http://192.168.1.140:3000/users/emailValidated/' + email),
+    Uri.parse(
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/emailValidated/' +
+            email),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -59,7 +61,8 @@ Future<AlbumBool> createAlbumIsEmailValidated(email) async {
 Future<AlbumSendEmail> createAlbumSendEmail(email) async {
   print("sending email to " + email + "...");
   final response = await http.post(
-    Uri.parse('http://192.168.1.140:3000/users/sendValidationEmail/'),
+    Uri.parse(
+        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/sendValidationEmail/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
