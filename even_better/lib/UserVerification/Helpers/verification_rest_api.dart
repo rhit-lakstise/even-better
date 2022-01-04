@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -61,8 +60,7 @@ Future<AlbumBool> createAlbumIsEmailValidated(email) async {
 Future<AlbumSendEmail> createAlbumSendEmail(email) async {
   print("sending email to " + email + "...");
   final response = await http.post(
-    Uri.parse(
-        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/sendValidationEmail/'),
+    Uri.parse('https://3.139.159.105:443/users/sendValidationEmail/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
