@@ -23,7 +23,7 @@ class AlbumBool {
 Future<AlbumBool> createAlbumValidateRose(roseUsername) async {
   final response = await http.post(
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/students/checkExist'),
+        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/students/checkExist'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -43,7 +43,7 @@ Future<AlbumBool> createAlbumIsEmailValidated(email) async {
   final response = await http.get(
     //query parameters!
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/emailValidated/' +
+        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/emailValidated/' +
             email),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -62,7 +62,7 @@ Future<AlbumSendEmail> createAlbumSendEmail(email) async {
   print("sending email to " + email + "...");
   final response = await http.post(
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/sendValidationEmail/'),
+        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/sendValidationEmail/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -108,7 +108,7 @@ class AlbumSignUp {
 Future<AlbumSignUp> createAlbumSignUpEB(username, roseUsername) async {
   final response = await http.post(
     Uri.parse(
-        'http://ec2-3-137-199-220.us-east-2.compute.amazonaws.com:3000/users/signup'),
+        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/signup'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
