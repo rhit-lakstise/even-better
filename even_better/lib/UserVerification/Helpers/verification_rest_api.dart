@@ -22,7 +22,8 @@ class AlbumBool {
 Future<AlbumBool> createAlbumValidateRose(roseUsername) async {
   final response = await http.post(
     Uri.parse(
-        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/students/checkExist'),
+        // 'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/students/checkExist'),
+        'http://137.112.225.193:3000'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -42,8 +43,8 @@ Future<AlbumBool> createAlbumIsEmailValidated(email) async {
   final response = await http.get(
     //query parameters!
     Uri.parse(
-        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/emailValidated/' +
-            email),
+        // 'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/emailValidated/' +
+        'http://137.112.225.193:3000/' + email),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -60,7 +61,8 @@ Future<AlbumBool> createAlbumIsEmailValidated(email) async {
 Future<AlbumSendEmail> createAlbumSendEmail(email) async {
   print("sending email to " + email + "...");
   final response = await http.post(
-    Uri.parse('https://3.139.159.105:443/users/sendValidationEmail/'),
+    // Uri.parse('https://3.139.159.105:443/users/sendValidationEmail/'),
+    Uri.parse('http://137.112.225.193:3000'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -106,7 +108,8 @@ class AlbumSignUp {
 Future<AlbumSignUp> createAlbumSignUpEB(username, roseUsername) async {
   final response = await http.post(
     Uri.parse(
-        'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/signup'),
+        // 'https://load-balancer-937536547.us-east-2.elb.amazonaws.com:443/users/signup'),
+        'http://137.112.225.193:3000'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

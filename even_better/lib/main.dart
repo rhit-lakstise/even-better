@@ -9,9 +9,8 @@ import 'screens/wrapper.dart';
 import 'models/user.dart';
 
 void main() async {
-  HttpOverrides.global = MyHttpOverrides();
+  // HttpOverrides.global = MyHttpOverrides();
 
-  print("running program");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
